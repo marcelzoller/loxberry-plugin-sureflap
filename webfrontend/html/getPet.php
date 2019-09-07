@@ -1,33 +1,55 @@
 <?php
+require_once "Config/Lite.php";
+require_once "loxberry_system.php";
+require_once "loxberry_log.php";
 
 include_once 'getHousehold.php';
+
+$params = [
+    "name" => "Daemon",
+    "filename" => "$lbplogdir/sureflap.log",
+    "append" => 1
+];
+$log = LBLog::newLog ($params);
+
+LOGSTART("SureFlap HTTP getPet.php started");
+ 
+//LOGINF("Processing query");
+//LOGOK("Query successfully processed");
+//LOGERR("Error on processing the query");
+//LOGCRIT("Unable to process, terminating");
+
 
 $ch = curl_init($endpoint."/api/household/$household/pet");
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_HTTPHEADER, array("Authorization: Bearer $token"));
 $result = json_decode(curl_exec($ch),true) or die("Curl Failed\n");
-
-if($result['data']) {
-	print "Pet ID: ".$result['data'][0]['id']."\n";
-	$pet = $result['data'][0]['id'];
-	print "Pet Name: ".$result['data'][0]['name']."\n";
-	$petname = $result['data'][0]['name'];
-	print "Pet Description: ".$result['data'][0]['comments']."\n";
-	print "Pet DOB: ".substr($result['data'][0]['date_of_birth'],0,10)."\n";
-	print "Pet Weight: ".$result['data'][0]['weight']." KG\n";
-	if($result['data'][0]['gender']=="0") {
-		print "Pet Gender: Female\n";
+if($result['data'][0]['name']==$_GET['name'] OR empty($_GET['name'])){
+	if($result['data']) {
+		print "PetID@".$result['data'][0]['id']."<br>";
+		LOGDEB("PetID@".$result['data'][0]['id']);
+		$pet = $result['data'][0]['id'];
+		print "PetName@".$result['data'][0]['name']."<br>";
+		LOGDEB("PetName@".$result['data'][0]['name']);
+		$petname = $result['data'][0]['name'];
+		print "PetDescription: ".$result['data'][0]['comments']."<br>";
+		print "PetDOB@".substr($result['data'][0]['date_of_birth'],0,10)."<br>";
+		print "PetWeight@".$result['data'][0]['weight']." KG<br>";
+		if($result['data'][0]['gender']=="0") {
+			print "PetGender@Female<br>";
+		} else {
+			print "PetGender@Male<br>";
+		}
+		if($result['data'][0]['species_id']=="2") {
+			print "PetSpecies@Dog<br>";
+		} else {
+			print "PetSpecies@Cat<br>";
+		}
+		$pet = $result['data'][0]['id'];
 	} else {
-		print "Pet Gender: Male\n";
+		die("No Pet!<br>");
+		LOGINF("No Pet!<br>");
 	}
-	if($result['data'][0]['species_id']=="2") {
-		print "Pet Species: Dog\n";
-	} else {
-		print "Pet Species: Cat\n";
-	}
-	$pet = $result['data'][0]['id'];
-} else {
-	die("No Pet!\n");
 }
-
+LOGEND("SureFlap HTTP getPet.php stopped");
 ?>

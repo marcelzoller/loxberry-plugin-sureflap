@@ -56,26 +56,10 @@
 							&nbsp;
 							<font size="-1"><TMPL_VAR BASIC.SUREFLAP_HMINISERVER></font>
 						</td>
-					</tr>
+					</tr>				
 					<tr>
 						<td width="25%">
-							<label id="labeludpsend"><b><TMPL_VAR BASIC.VZUG_HTTPSEND></b></label>
-						</td>
-						<td width="50%">
-						<fieldset>
-								<select  name="HTTP_Send" data-role="flipswitch">
-									<option value="0"<TMPL_VAR NAME=HTTPSENDNO>>Aus</option><option value="1" <TMPL_VAR NAME=HTTPSENDYES>>Ein</option>\n
-								</select>
-							</fieldset>
-						</td>
-						<td width="25%">
-							&nbsp;
-							<font size="-1"><TMPL_VAR BASIC.VZUG_HHTTPSEND></font>
-						</td>
-					</tr>					
-					<tr>
-						<td width="25%">
-							<label id="labelmsenabled"><b><TMPL_VAR BASIC.VZUG_HTML></b></label>
+							<label id="labelmsenabled"><b><TMPL_VAR BASIC.SUREFLAP_HTML></b></label>
 						</td>
 						<td width="50%">
 						<table border=0>
@@ -87,13 +71,12 @@
 									</select>
 							  </fieldset>
 							</td><td>
-									&nbsp;&nbsp;<font size="-1">URL: <a href="<TMPL_VAR NAME=WEBSITE>" target=_blank"><TMPL_VAR NAME=WEBSITE></a></font>
 							</td></tr>
 						</table>
 						</td>
 						<td width="25%">
 							&nbsp;
-							<font size="-1"><TMPL_VAR BASIC.VZUG_HHTML></font>
+							<font size="-1"><TMPL_VAR BASIC.SUREFLAP_HHTML></font>
 						</td>
 					</tr>
 					<tr>
@@ -119,13 +102,18 @@
 					<hr>
 					<tr>
 						<td width="25%">
-							<b><TMPL_VAR BASIC.VZUG_SCAN></b>
+							<b><TMPL_VAR BASIC.SUREFLAP_GET></b>
 						</td>
 						<td colspan=2 width="50%">
-							<a id="button" data-icon="info" data-role="button" data-inline="true" data-mini="true" href="<TMPL_VAR NAME=WEBSTATUS>" target="_blank"><TMPL_VAR BASIC.VZUG_SCANBUTTON></a>
+							&nbsp;&nbsp;<font size="-1">URL: <a href="<TMPL_VAR NAME=WEBSITE1>" target=_blank"><TMPL_VAR NAME=WEBSITE1></a></font><br>
+							&nbsp;&nbsp;<font size="-1">URL: <a href="<TMPL_VAR NAME=WEBSITE2>" target=_blank"><TMPL_VAR NAME=WEBSITE2></a></font><br>
+							&nbsp;&nbsp;<font size="-1">URL: <a href="<TMPL_VAR NAME=WEBSITE3>" target=_blank"><TMPL_VAR NAME=WEBSITE3></a></font><br>
+							&nbsp;&nbsp;<font size="-1">URL: <a href="<TMPL_VAR NAME=WEBSITE4>" target=_blank"><TMPL_VAR NAME=WEBSITE4></a></font><br>
+							&nbsp;&nbsp;<font size="-1">URL: <a href="<TMPL_VAR NAME=WEBSITE5>" target=_blank"><TMPL_VAR NAME=WEBSITE5></a></font><br>
+							&nbsp;&nbsp;<font size="-1">URL: <a href="<TMPL_VAR NAME=WEBSITE6>" target=_blank"><TMPL_VAR NAME=WEBSITE6></a></font>
 						</td>
 						<td width="25%">
-							<TMPL_VAR BASIC.VZUG_HSCAN>
+							<TMPL_VAR BASIC.SUREFLAP_HGET>
 						</td>
 					</tr>	
 			</tabel>

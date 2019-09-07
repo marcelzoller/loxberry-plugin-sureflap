@@ -1,24 +1,56 @@
 <?php
+require_once "Config/Lite.php";
+require_once "loxberry_system.php";
+require_once "loxberry_log.php";
 
-if(!$argv[1]) {
-	die("Usage: php ".$_SERVER['PHP_SELF']." [in|out|both|none]\n");
-}
+$params = [
+    "name" => "Daemon",
+    "filename" => "$lbplogdir/sureflap.log",
+    "append" => 1
+];
+$log = LBLog::newLog ($params);
 
-switch($argv[1]) {
-	case "in":
+LOGSTART("SureFlap HTTP setLockMode.php started");
+
+switch($_GET['modeid'] ) {
+	case "3":
 		$lock = 2;
+		LOGDEB("LockMode: in");
 		break;
-	case "out":
+	case "2":
 		$lock = 1;
+		LOGDEB("LockMode: out");
 		break;
-	case "both":
+	case "4":
 		$lock = 3;
+		LOGDEB("LockMode: both");
 		break;
-	case "none":
+	case "1":
 		$lock = 0;
+		LOGDEB("LockMode: none");
 		break;
-	default:
-		die("Usage: php ".$_SERVER['PHP_SELF']." [in|out|both|none]\n");
+}
+if(empty($_GET['modeid'])){
+	switch($_GET['mode'] ) {
+		case "in":
+			$lock = 2;
+			LOGDEB("LockMode: in");
+			break;
+		case "out":
+			$lock = 1;
+			LOGDEB("LockMode: out");
+			break;
+		case "both":
+			$lock = 3;
+			LOGDEB("LockMode: both");
+			break;
+		case "none":
+			$lock = 0;
+			LOGDEB("LockMode: none");
+			break;
+		default:
+			die("Usage: ".$_SERVER['PHP_SELF']."?mode=[in|out|both|none]\n");
+	}
 }
 
 include_once 'getDevices.php';
@@ -32,9 +64,11 @@ curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type: application/json","Con
 $result = json_decode(curl_exec($ch),true) or die("Curl Failed\n");
 
 if($result['data']['locking']==$lock) {
-	print "Successfully Set \"$flapname\" Lock Mode!\n";
+	//print "Successfully Set \"$flapname\" Lock Mode!\n";
+	$lock=$lock+1;
+	print "SetLockModeID@".$lock;
 } else {
 	die("Lock Mode Change Failed!\n");
 }
-
+LOGEND("SureFlap HTTP setLockMode.php stopped");
 ?>

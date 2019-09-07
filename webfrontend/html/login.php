@@ -1,11 +1,11 @@
 <?php
 
-print "\n";
+//print "\n";
 
 include_once 'config.php';
 
 if($oldtoken = file_get_contents("token")) {
-	print "Found Old Session Token. Attempting Logout... ";
+	//print "Found Old Session Token. Attempting Logout... ";
 	include 'logout.php';
 }
 
@@ -19,13 +19,13 @@ curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type: application/json","Con
 $result = json_decode(curl_exec($ch),true) or die("Curl Failed\n");
 
 if($result['data']['token']) {
-	print "New Login Successful for ".$result['data']['user']['first_name']." ".$result['data']['user']['last_name']."!\nToken: ".$result['data']['token'];
+	//print "New Login Successful for ".$result['data']['user']['first_name']." ".$result['data']['user']['last_name']."!\nToken: ".$result['data']['token'];
 	$token = $result['data']['token'];
 	file_put_contents("token",$token);
 } else {
 	die("Login Failed!\n");
 }
 
-print "\n";
+//print "\n";
 
 ?>
