@@ -32,7 +32,7 @@ if($result['data'][0]['name']==$_GET['name'] OR empty($_GET['name'])){
 		print "PetName@".$result['data'][0]['name']."<br>";
 		LOGDEB("PetName@".$result['data'][0]['name']);
 		$petname = $result['data'][0]['name'];
-		print "PetDescription: ".$result['data'][0]['comments']."<br>";
+		print "PetDescription@".$result['data'][0]['comments']."<br>";
 		print "PetDOB@".substr($result['data'][0]['date_of_birth'],0,10)."<br>";
 		print "PetWeight@".$result['data'][0]['weight']." KG<br>";
 		if($result['data'][0]['gender']=="0") {
