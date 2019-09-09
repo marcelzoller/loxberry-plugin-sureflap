@@ -14,12 +14,6 @@ $log = LBLog::newLog ($params);
 
 LOGSTART("SureFlap HTTP getPet.php started");
  
-//LOGINF("Processing query");
-//LOGOK("Query successfully processed");
-//LOGERR("Error on processing the query");
-//LOGCRIT("Unable to process, terminating");
-
-
 $ch = curl_init($endpoint."/api/household/$household/pet");
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_HTTPHEADER, array("Authorization: Bearer $token"));
@@ -34,7 +28,7 @@ if($result['data'][0]['name']==$_GET['name'] OR empty($_GET['name'])){
 		$petname = $result['data'][0]['name'];
 		print "PetDescription@".$result['data'][0]['comments']."<br>";
 		print "PetDOB@".substr($result['data'][0]['date_of_birth'],0,10)."<br>";
-		print "PetWeight@".$result['data'][0]['weight']." KG<br>";
+		print "PetWeight@".$result['data'][0]['weight']." kg<br>";
 		if($result['data'][0]['gender']=="0") {
 			print "PetGender@Female<br>";
 		} else {
