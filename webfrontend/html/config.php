@@ -5,9 +5,8 @@ $cfg = new Config_Lite("$lbpconfigdir/pluginconfig.cfg");
 
 ///echo $cfg->get("MAIN","EMAIL");
 
-//$email_address = "marcel@zoller.li";
+
 $email_address = $cfg['MAIN']['EMAIL'];
-//$password = "oshooda";
 $password = $cfg['MAIN']['PASSWORD'];;
 
 $endpoint = "https://app.api.surehub.io";
