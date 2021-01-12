@@ -5,14 +5,14 @@ $cfg = new Config_Lite("$lbpconfigdir/pluginconfig.cfg");
 
 ///echo $cfg->get("MAIN","EMAIL");
 
-//$email_address = "marcel@zoller.li";
+//$email_address = "test@test.com";
 $email_address = $cfg['MAIN']['EMAIL'];
-//$password = "oshooda";
+//$password = "test1234";
 $password = $cfg['MAIN']['PASSWORD'];;
 
 $endpoint = "https://app.api.surehub.io";
 
 // Invent something for mandatory fingerprintJs login value. Any 32bit integer will suffice.
-$device_id = (string) rand(1000000000,9999999999);
-
+//$device_id = (string) rand(1000000000,9999999999);
+$device_id = sprintf('%10d', rand(1000000000, 9999999999));
 ?>
