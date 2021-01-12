@@ -3,12 +3,13 @@ require_once "Config/Lite.php";
 require_once "loxberry_system.php";
 $cfg = new Config_Lite("$lbpconfigdir/pluginconfig.cfg");
 
-///echo $cfg->get("MAIN","EMAIL");
+//echo $cfg->get("MAIN","EMAIL");
 
-//$email_address = "test@test.com";
+
 $email_address = $cfg['MAIN']['EMAIL'];
-//$password = "test1234";
+//$email_address = "test@test.com";
 $password = $cfg['MAIN']['PASSWORD'];;
+//$password = "test1234";
 
 $endpoint = "https://app.api.surehub.io";
 
