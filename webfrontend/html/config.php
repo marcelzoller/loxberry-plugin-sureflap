@@ -15,5 +15,5 @@ $endpoint = "https://app.api.surehub.io";
 
 // Invent something for mandatory fingerprintJs login value. Any 32bit integer will suffice.
 //$device_id = (string) rand(1000000000,9999999999);
-$device_id = sprintf('%10d', rand(1000000000, 9999999999));
+$device_id = (string) rand(100000000,999999999);
 ?>
