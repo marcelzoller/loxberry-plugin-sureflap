@@ -1,7 +1,27 @@
 <?php
-require_once "Config/Lite.php";
-require_once "loxberry_system.php";
 require_once "loxberry_log.php";
+
+// check inputs
+$led_mode = $_GET['mode'].$_GET['modeid'];
+switch($led_mode) {
+	case "0":
+	case "off":
+		$led = 0;
+		$led_str = "off";
+		break;	
+	case "1":
+	case "bright":
+		$led = 1;
+		$led_str = "bright";
+		break;
+	case "4":
+	case "dim":
+		$led = 4;
+		$led_str = "dim";
+		break;
+	default:
+		die("Usage: ".$_SERVER['PHP_SELF']."?modeid=[0|1|4] or ?mode=[off|bright|dim]<br>");			
+}
 
 $params = [
     "name" => "Daemon",
@@ -11,65 +31,42 @@ $params = [
 $log = LBLog::newLog ($params);
 
 LOGSTART("SureFlap HTTP setHubLedBrightness.php started");
+LOGDEB("SetHubLedMode:".$led_str);
 
+// get new data - no output
+$background = true;
+include 'getData.php';
 
-switch($_GET['modeid']) {
-		case "2":
-			$led = 1;
-			$ledid =2;
-			LOGDEB("SetHubLedMode: bright");
-			break;
-		case "3":
-			$led = 4;
-			$ledid =3;
-			LOGDEB("SetHubLedMode: dim");
-			break;
-		case "1":
-			$led = 0;
-			$ledid =1;
-			LOGDEB("SetHubLedMode: off");
-			break;
-	}
-
-if(empty($_GET['modeid'])){
-	switch($_GET['mode']) {
-		case "bright":
-			$led = 1;
-			$ledid =2;
-			LOGDEB("SetHubLedMode: bright");
-			break;
-		case "dim":
-			$led = 4;
-			$ledid =3;
-			LOGDEB("SetHubLedMode: dim");
-			break;
-		case "off":
-			$led = 0;
-			$ledid =1;
-			LOGDEB("SetHubLedMode: off");
-			break;
-		default:
-			//die("Usage: php ".$_SERVER['PHP_SELF']." [bright|dim|off]\n");
-			die("Usage: ".$_SERVER['PHP_SELF']."?mode=[bright|dim|off]\n");
-	}
-}
-
-include_once 'getDevices.php';
-
-$json = json_encode(array("led_mode" => $led));
-$ch = curl_init($endpoint."/api/device/$hub/control");
-curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
-curl_setopt($ch, CURLOPT_POSTFIELDS, $json);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type: application/json","Content-Length: ".strlen($json),"Authorization: Bearer $token"));
-$result = json_decode(curl_exec($ch),true) or die("Curl Failed\n");
-
-if($result['data']['led_mode']==$led) {
-	//print "Successfully Set $hubname LED Brightness!\n";
-	print "SetHubLedMode@".$ledid;
-	LOGDEB("SetHubLedMode: ".$ledid);
+if($device_led_id == $led) {
+	print "LED mode on \"$hubname\" is \"$led_str\". No change necessary.<br>";
+	LOGINF("LED mode on \"$hubname\" is \"$led_str\". No change necessary.");
 } else {
-	die("LED Brightness Change Failed!\n");
+	LOGDEB("Starting request...");
+	$json = json_encode(array("led_mode" => $led));
+	$ch = curl_init($endpoint."/api/device/$hub/control");
+	curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
+	curl_setopt($ch, CURLOPT_POSTFIELDS, $json);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type: application/json","Content-Length: ".strlen($json),"Authorization: Bearer $token"));
+	$result = json_decode(curl_exec($ch),true) or die("Curl Failed\n");
+	LOGDEB("Request received with code: ".curl_getinfo($ch, CURLINFO_HTTP_CODE));
+
+	if($result['data']['led_mode'] == $led) {
+		print "Successfully set LED mode for \"$hubname\" to \"$led_str\"<br><br>";
+		LOGINF("Successfully set LED mode for \"$hubname\" to \"$led_str\"");
+	} else {
+		print "LED Brightness Change Failed!<br>";
+		LOGERR("LED Brightness Change Failed!");
+	}
+	
+	if($config_http_send == 1) {
+		// Build data to responce
+		$devices = array(array("id" => $hub, "name" => $hubname, "product_id" => 1, "control" => $result['data']));
+		include 'includes/getDevices.php';
+		// Responce to virutal input
+		LOGDEB("Starting Response to miniserver...");
+		include_once 'includes/sendResponces.php';
+	}		
 }
 
 LOGEND("SureFlap HTTP setHubLedBrightness.php stopped");

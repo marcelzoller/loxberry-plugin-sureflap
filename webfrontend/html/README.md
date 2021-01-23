@@ -13,26 +13,15 @@ For sake of example, the scripts assume a single household with a single hub, a 
 
 The scripts have various dependencies on each other, but you can do the following:
 
-#### php login.php
-(does what it says - logs in and retrieves a session token)
-
-#### php getHousehold.php
-(calls login.php, then displays details of the household)
-
-#### php getPet.php
-(calls getHousehold.php, then displays details of the pet registered to that household)
-
-#### php getPetLocation.php
-(calls getPet.php, then displays the pet's current location)
+#### getData.php
+displays details of the household
+displays information for devices at the household
+displays current curfew status - with times if enable
+displays details of the pet registered to that household
+displays the pet's current location
 
 #### php setPetLocation.php 1|2 (1 == inside, 2 == outside)
 (calls getPet.php, then updates location with current timestamp)
-
-#### php getDevices.php
-(calls getHousehold.php, then displays information for devices at the household)
-
-#### php getCurfewStatus.php
-(calls getDevices.php, then displays current curfew status - with times if enabled)
 
 #### php setLockMode.php in|out|both|none
 (calls getDevices.php, then sets the lock mode of the flap. NB: manually changing the lock state may disable curfew mode!)
@@ -40,8 +29,23 @@ The scripts have various dependencies on each other, but you can do the followin
 #### php setHubLedBrightness.php bright|dim|off
 (calls getDevices.php, then sets the LED brightness of the "ears" on the hub)
 
-#### php setEnableCurfew.php lockTime unlockTime (eg. 18:00 06:30)
+#### php setEnableCurfew.php lockTime unlockTime (eg. 18:00 06:30) - beta
 (calls getDevices.php, then enables curfew mode between the lockTime and unlockTime specified - NB: if you change the curfew times when a curfew is in force and the flap is locked, the flap will unlock if the current time is outside those specified)
+
+#### php getHousehold.php
+(backward compatibility)
+
+#### php getPet.php
+(backward compatibility)
+
+#### php getPetLocation.php
+(backward compatibility)
+
+#### php getDevices.php
+(backward compatibility)
+
+#### php getCurfewStatus.php
+(backward compatibility)
 
 Plenty more to come, but please don't piss and moan about the quality of the code - it was a Saturday afternoon hack over a few beers.
 

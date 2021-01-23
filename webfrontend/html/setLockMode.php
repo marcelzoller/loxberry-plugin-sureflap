@@ -1,7 +1,32 @@
 <?php
-require_once "Config/Lite.php";
-require_once "loxberry_system.php";
 require_once "loxberry_log.php";
+
+// check inputs
+$lock_mode = $_GET['mode'].$_GET['modeid'];
+switch($lock_mode) {	
+	case "0":
+	case "none":
+		$lock = 0;
+		$lock_str = "none";
+		break;
+	case "1":
+	case "in":
+		$lock = 1;
+		$lock_str = "lock in";
+		break;		
+	case "2":
+	case "out":
+		$lock = 2;
+		$lock_str = "lock out";
+		break;
+	case "3":
+	case "both":
+		$lock = 3;
+		$lock_str = "lock both";
+		break;
+	default:
+		die("Usage: ".$_SERVER['PHP_SELF']."?modeid=[0|1|2|3] or ?mode=[none|in|out|both|]<br>");
+}
 
 $params = [
     "name" => "Daemon",
@@ -11,64 +36,43 @@ $params = [
 $log = LBLog::newLog ($params);
 
 LOGSTART("SureFlap HTTP setLockMode.php started");
+LOGDEB("LockMode: ".$lock_str);
 
-switch($_GET['modeid'] ) {
-	case "3":
-		$lock = 2;
-		LOGDEB("LockMode: in");
-		break;
-	case "2":
-		$lock = 1;
-		LOGDEB("LockMode: out");
-		break;
-	case "4":
-		$lock = 3;
-		LOGDEB("LockMode: both");
-		break;
-	case "1":
-		$lock = 0;
-		LOGDEB("LockMode: none");
-		break;
-}
-if(empty($_GET['modeid'])){
-	switch($_GET['mode'] ) {
-		case "in":
-			$lock = 2;
-			LOGDEB("LockMode: in");
-			break;
-		case "out":
-			$lock = 1;
-			LOGDEB("LockMode: out");
-			break;
-		case "both":
-			$lock = 3;
-			LOGDEB("LockMode: both");
-			break;
-		case "none":
-			$lock = 0;
-			LOGDEB("LockMode: none");
-			break;
-		default:
-			die("Usage: ".$_SERVER['PHP_SELF']."?mode=[in|out|both|none]\n");
-	}
-}
+// get new data - no output
+$background = true;
+include 'getData.php';
 
-include_once 'getDevices.php';
-
-$json = json_encode(array("locking" => "$lock"));
-$ch = curl_init($endpoint."/api/device/$flap/control");
-curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
-curl_setopt($ch, CURLOPT_POSTFIELDS, $json);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type: application/json","Content-Length: ".strlen($json),"Authorization: Bearer $token"));
-$result = json_decode(curl_exec($ch),true) or die("Curl Failed\n");
-
-if($result['data']['locking']==$lock) {
-	//print "Successfully Set \"$flapname\" Lock Mode!\n";
-	$lock=$lock+1;
-	print "SetLockModeID@".$lock;
+if($device_lock_id == $lock) {
+	print "Lockmode on \"$flapname\" is \"$lock_str\". No change necessary.<br>";
+	LOGINF("Lockmode on \"$flapname\" is \"$lock_str\". No change necessary.");
 } else {
-	die("Lock Mode Change Failed!\n");
+	LOGDEB("Starting request...");
+	$json = json_encode(array("locking" => "$lock"));
+	$ch = curl_init($endpoint."/api/device/$flap/control");
+	curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
+	curl_setopt($ch, CURLOPT_POSTFIELDS, $json);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type: application/json","Content-Length: ".strlen($json),"Authorization: Bearer $token"));
+	$result = json_decode(curl_exec($ch),true) or die("Curl Failed\n");
+	LOGDEB("Request received with code: ".curl_getinfo($ch, CURLINFO_HTTP_CODE));
+
+	if($result['data']['locking'] == $lock) {
+		print "Successfully set lockmode for \"$flapname\" to \"$lock_str\"<br><br>";
+		LOGINF("Successfully set lockmode for \"$flapname\" to \"$lock_str\"");
+	} else {
+		print "Lockmode change failed!<br>";
+		LOGERR("Lockmode change failed!");
+	}
+
+	if($config_http_send == 1) {
+		// Build data to responce
+		$devices = array(array("id" => $flap, "name" => $flapname, "product_id" => $flaptype, "control" => $result['data']));
+		include 'includes/getDevices.php';
+		// Responce to virutal input
+		LOGDEB("Starting Response to miniserver...");
+		include_once 'includes/sendResponces.php';
+	}	
 }
+
 LOGEND("SureFlap HTTP setLockMode.php stopped");
 ?>
