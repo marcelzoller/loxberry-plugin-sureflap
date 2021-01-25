@@ -38,36 +38,35 @@ $background = true;
 include 'getData.php';
 
 if($device_led_id == $led) {
-	print "LED mode on \"$hubname\" is \"$led_str\". No change necessary.<br>";
+	print "LED mode on \"$hubname\" is \"$led_str\". No change necessary.<br><br>";
 	LOGINF("LED mode on \"$hubname\" is \"$led_str\". No change necessary.");
 } else {
 	LOGDEB("Starting request...");
 	$json = json_encode(array("led_mode" => $led));
-	$ch = curl_init($endpoint."/api/device/$hub/control");
-	curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
-	curl_setopt($ch, CURLOPT_POSTFIELDS, $json);
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-	curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type: application/json","Content-Length: ".strlen($json),"Authorization: Bearer $token"));
-	$result = json_decode(curl_exec($ch),true) or die("Curl Failed\n");
-	LOGDEB("Request received with code: ".curl_getinfo($ch, CURLINFO_HTTP_CODE));
+	$curl = put_curl($endpoint."/api/device/$hub/control", $token, $json);
+	LOGDEB("Request received with code: ".$curl['http_code']);
 
-	if($result['data']['led_mode'] == $led) {
+	if($curl['result']['data']['led_mode'] == $led) {
 		print "Successfully set LED mode for \"$hubname\" to \"$led_str\"<br><br>";
 		LOGINF("Successfully set LED mode for \"$hubname\" to \"$led_str\"");
+
+		// Build data to responce
+		$devices = array(array("id" => $hub, "name" => $hubname, "product_id" => 1, "control" => $curl['result']['data']));		
 	} else {
 		print "LED Brightness Change Failed!<br>";
 		LOGERR("LED Brightness Change Failed!");
-	}
-	
-	if($config_http_send == 1) {
-		// Build data to responce
-		$devices = array(array("id" => $hub, "name" => $hubname, "product_id" => 1, "control" => $result['data']));
-		include 'includes/getDevices.php';
-		// Responce to virutal input
-		LOGDEB("Starting Response to miniserver...");
-		include_once 'includes/sendResponces.php';
-	}		
+	}	
 }
+
+if($config_http_send == 1) {	
+	// Only send changed values
+	$_GET['viparam'] = "DeviceLedMode;DeviceLedModeDesc";
+	// Convert value
+	include 'includes/getDevices.php';
+	// Responce to virutal input
+	LOGDEB("Starting Response to miniserver...");	
+	include_once 'includes/sendResponces.php';
+}	
 
 LOGEND("SureFlap HTTP setHubLedBrightness.php stopped");
 ?>

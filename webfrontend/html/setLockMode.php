@@ -43,35 +43,34 @@ $background = true;
 include 'getData.php';
 
 if($device_lock_id == $lock) {
-	print "Lockmode on \"$flapname\" is \"$lock_str\". No change necessary.<br>";
+	print "Lockmode on \"$flapname\" is \"$lock_str\". No change necessary.<br><br>";
 	LOGINF("Lockmode on \"$flapname\" is \"$lock_str\". No change necessary.");
 } else {
 	LOGDEB("Starting request...");
 	$json = json_encode(array("locking" => "$lock"));
-	$ch = curl_init($endpoint."/api/device/$flap/control");
-	curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
-	curl_setopt($ch, CURLOPT_POSTFIELDS, $json);
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-	curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type: application/json","Content-Length: ".strlen($json),"Authorization: Bearer $token"));
-	$result = json_decode(curl_exec($ch),true) or die("Curl Failed\n");
-	LOGDEB("Request received with code: ".curl_getinfo($ch, CURLINFO_HTTP_CODE));
+	$curl = put_curl($endpoint."/api/device/$flap/control", $token, $json);
+	LOGDEB("Request received with code: ".$curl['http_code']);
 
-	if($result['data']['locking'] == $lock) {
+	if($curl['result']['data']['locking'] == $lock) {
 		print "Successfully set lockmode for \"$flapname\" to \"$lock_str\"<br><br>";
 		LOGINF("Successfully set lockmode for \"$flapname\" to \"$lock_str\"");
+		
+		// Build data to responce
+		$devices = array(array("id" => $flap, "name" => $flapname, "product_id" => $flaptype, "control" => $curl['result']['data']));		
 	} else {
 		print "Lockmode change failed!<br>";
 		LOGERR("Lockmode change failed!");
 	}
+}
 
-	if($config_http_send == 1) {
-		// Build data to responce
-		$devices = array(array("id" => $flap, "name" => $flapname, "product_id" => $flaptype, "control" => $result['data']));
-		include 'includes/getDevices.php';
-		// Responce to virutal input
-		LOGDEB("Starting Response to miniserver...");
-		include_once 'includes/sendResponces.php';
-	}	
+if($config_http_send == 1) {
+	// Only send changed values
+	$_GET['viparam'] = "DeviceLockMode;DeviceLockModeDesc";
+	// Convert value
+	include 'includes/getDevices.php';
+	// Responce to virutal input
+	LOGDEB("Starting Response to miniserver...");
+	include_once 'includes/sendResponces.php';
 }
 
 LOGEND("SureFlap HTTP setLockMode.php stopped");

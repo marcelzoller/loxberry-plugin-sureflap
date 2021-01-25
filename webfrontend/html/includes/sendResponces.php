@@ -26,19 +26,16 @@ if(empty($_GET['viname'])) {
 		
 		if(in_array($values[1], $viparams) OR empty($_GET['viparam'])) {
 			// replace space with special-space
-			$values[2] = str_replace(" "," ",$values[2]);
+			$values[2] = urlencode(str_replace(" "," ",$values[2]));
 			// set vi_endpoint
 			$vi_endpoint = $_GET['viname'].$_GET['viseparator'].$values[0].$_GET['viseparator'].$values[1];
 
 			LOGDEB("Try to send to: ".$response_endpoint.$vi_endpoint."/".$values[2]);
-			$ch = curl_init($response_endpoint.$vi_endpoint."/".$values[2]);
-			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-			curl_setopt($ch, CURLOPT_HEADER, 0);
-			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-			curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
-			$result = json_decode(curl_exec($ch),true);
+			// curl loxone
+			$curl = lox_curl($response_endpoint.$vi_endpoint."/".$values[2]);
+			LOGDEB("Response received with code: ".$curl['http_code']);
 			
-			if(curl_getinfo($ch, CURLINFO_HTTP_CODE) == "200") {
+			if($curl['http_code'] == "200") {
 				print "Send value \"$values[2]\" to \"$vi_endpoint\" successful!<br>";
 				LOGINF("Send value \"$values[2]\" to \"$vi_endpoint\" successful!");
 			}

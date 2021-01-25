@@ -16,7 +16,6 @@ if(isset($_GET['locationLox'])) {
 
 // check parameter "location"
 $location_mode = $_GET['location'].$_GET['locationid'];
-print $location_mode;
 switch($location_mode){
 	case "1":
 	case "in":
@@ -53,7 +52,7 @@ if($petname != $_GET['petname']) {
 }
 
 if($curr_location_id == $location) {
-	print "Location for \"$petname\" is \"$location_str\". No change necessary.<br>";
+	print "Location for \"$petname\" is \"$location_str\". No change necessary.<br><br>";
 	LOGINF("Location for \"$petname\" is \"$location_str\". No change necessary.");
 } else {
 	// Set Timezone to UTC
@@ -63,30 +62,29 @@ if($curr_location_id == $location) {
 	date_default_timezone_set($server_timezone);
 
 	LOGDEB("Starting request...");
-	$ch = curl_init($endpoint."/api/pet/$petid/position");
-	curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-	curl_setopt($ch, CURLOPT_POSTFIELDS, $json);
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-	curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type: application/json","Content-Length: ".strlen($json),"Authorization: Bearer $token"));
-	$result = json_decode(curl_exec($ch),true) or die("Curl Failed\n");
-	LOGDEB("Request received with code: ".curl_getinfo($ch, CURLINFO_HTTP_CODE));
+	$curl = post_curl($endpoint."/api/pet/$petid/position", $token, $json);
+	LOGDEB("Request received with code: ".$curl['http_code']);
 
-	if($result['data']['where'] == $location) {
+	if($curl['result']['data']['where'] == $location) {
 		print "Successfully set pet location for \"$petname\" to \"$location_str\"<br><br>";
 		LOGINF("Successfully set pet location for \"$petname\" to \"$location_str\"");
+		
+		// Build data to responce
+		$pets = array(array("id" => $petid, "name" => $petname, "position" => $curl['result']['data']));		
 	} else {
 		print "Set Location Failed!<br>";
 		LOGERR("Set Location Failed!");
 	}
-	
-	if($config_http_send == 1) {
-		// Build data to responce
-		$pets = array(array("id" => $petid, "name" => $petname, "position" => $result['data']));
-		include 'includes/getPets.php';
-		// Responce to virutal input
-		LOGDEB("Starting Response to miniserver...");
-		include_once 'includes/sendResponces.php';
-	}
+}
+
+if($config_http_send == 1) {
+	// Only send changed values
+	$_GET['viparam'] = "PetLocation;PetLocationLox;PetLocationDesc;PetLocationSince;PetLocationSinceLox";
+	// Convert value
+	include 'includes/getPets.php';
+	// Responce to virutal input
+	LOGDEB("Starting Response to miniserver...");
+	include_once 'includes/sendResponces.php';
 }
 
 LOGEND("SureFlap HTTP setPedLocations.php stopped");/**/

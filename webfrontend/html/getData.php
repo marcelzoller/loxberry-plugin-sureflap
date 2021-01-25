@@ -18,30 +18,25 @@ if($background) {
 
 // load config
 include_once 'includes/config.php';
+include_once 'includes/curl.php';
 
 // send request
 if($token) {
 	LOGDEB("Starting request...");
-	$ch = curl_init($endpoint."/api/me/start");
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-	curl_setopt($ch, CURLOPT_HTTPHEADER, array("Authorization: Bearer $token"));
-	$result = json_decode(curl_exec($ch),true) or die("Curl Failed");
-	LOGDEB("Request received with code: ".curl_getinfo($ch, CURLINFO_HTTP_CODE));
+	$curl = get_curl($endpoint."/api/me/start", $token);
+	LOGDEB("Request received with code: ".$curl['http_code']);
 }
 
 // get new token?
-if(curl_getinfo($ch, CURLINFO_HTTP_CODE) != "200") {
+if($curl['http_code'] != "200") {
 	LOGWARN("Token needs to be renewed!");
 	// getting new token
 	include_once 'includes/login.php';
 	
 	// resend request
 	LOGDEB("Restarting request...");
-	$ch = curl_init($endpoint."/api/me/start");
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-	curl_setopt($ch, CURLOPT_HTTPHEADER, array("Authorization: Bearer $token"));
-	$result = json_decode(curl_exec($ch),true) or die("Curl Failed");
-	LOGDEB("Re-Request received with code: ".curl_getinfo($ch, CURLINFO_HTTP_CODE));
+	$curl = get_curl($endpoint."/api/me/start", $token);
+	LOGDEB("Re-Request received with code: ".curl['http_code']);
 }
 
 // print request moment
@@ -50,12 +45,12 @@ print "System@DateTimeLox@".epoch2lox(time())."<br><br>";
 
 // getting household
 LOGDEB("Getting households...");
-$households = $result['data']['households'];
+$households = $curl['result']['data']['households'];
 include 'includes/getHouseholds.php';
 
 // getting devices
 LOGDEB("Getting devices...");
-$devices = $result['data']['devices'];
+$devices = $curl['result']['data']['devices'];
 include 'includes/getDevices.php';
 
 // Backward compatibility
@@ -66,7 +61,7 @@ if(isset($_GET['name'])) {
 
 // getting pets
 LOGDEB("Getting pets...");
-$pets = $result['data']['pets'];
+$pets = $curl['result']['data']['pets'];
 include 'includes/getPets.php';
 
 if($background) {
@@ -83,5 +78,4 @@ if($background) {
 	ob_end_flush();
 	LOGEND("SureFlap HTTP getData.php stopped");	
 }
-
 ?>
