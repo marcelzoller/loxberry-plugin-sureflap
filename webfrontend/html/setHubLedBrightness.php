@@ -4,23 +4,23 @@ require_once "loxberry_log.php";
 // check inputs
 $led_mode = $_GET['mode'].$_GET['modeid'];
 switch($led_mode) {
-	case "0":
+	case "1":
 	case "off":
 		$led = 0;
 		$led_str = "off";
 		break;	
-	case "1":
+	case "2":
 	case "bright":
 		$led = 1;
 		$led_str = "bright";
 		break;
-	case "4":
+	case "3":
 	case "dim":
 		$led = 4;
 		$led_str = "dim";
 		break;
 	default:
-		die("Usage: ".$_SERVER['PHP_SELF']."?modeid=[0|1|4] or ?mode=[off|bright|dim]<br>");			
+		die("Usage: ".$_SERVER['PHP_SELF']."?modeid=[1|2|3] or ?mode=[off|bright|dim]<br>");			
 }
 
 $params = [

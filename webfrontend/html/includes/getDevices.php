@@ -67,16 +67,19 @@ if($devices) {
 				unset($device_led);
 				switch($device_led_id) {	
 					case "0":
+						$device_led_id_old = 1;
 						$device_led = "off";
 						break;
 					case "1":
+						$device_led_id_old = 2;
 						$device_led = "bright";
 						break;		
 					case "4":
+						$device_led_id_old = 3;
 						$device_led = "dim";
 						break;
 				}
-				print $multi."DeviceLedMode@".$device_led_id."<br>";
+				print $multi."DeviceLedMode@".$device_led_id_old."<br>";
 				print $multi."DeviceLedModeDesc@".$device_led."<br>"; 	
 			}			
 			// Flap-data
@@ -94,22 +97,26 @@ if($devices) {
 				print $multi."DeviceBatteryPerc@".$device_batt_perc."%<br>";
 				// Locking
 				$device_lock_id = $device['control']['locking'];
-				print $multi."DeviceLockMode@".$device_lock_id."<br>";				
 				unset($device_lock);
 				switch($device_lock_id) {	
 					case "0":
+						$device_lock_id_old = 1;
 						$device_lock = "none";
 						break;
 					case "1":
+						$device_lock_id_old = 2;
 						$device_lock = "in";
 						break;		
 					case "2":
+						$device_lock_id_old = 3;
 						$device_lock = "out";
 						break;
 					case "3":
+						$device_lock_id_old = 4;
 						$device_lock = "both";
 						break;
 				}
+				print $multi."DeviceLockMode@".$device_lock_id_old."<br>";				
 				print $multi."DeviceLockModeDesc@".$device_lock."<br>";
 				// Curfew-Status
 				if($device['control']['curfew']) {

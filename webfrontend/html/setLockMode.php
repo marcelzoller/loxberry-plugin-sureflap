@@ -4,28 +4,28 @@ require_once "loxberry_log.php";
 // check inputs
 $lock_mode = $_GET['mode'].$_GET['modeid'];
 switch($lock_mode) {	
-	case "0":
+	case "1":
 	case "none":
 		$lock = 0;
 		$lock_str = "none";
 		break;
-	case "1":
+	case "2":
 	case "in":
 		$lock = 1;
 		$lock_str = "lock in";
 		break;		
-	case "2":
+	case "3":
 	case "out":
 		$lock = 2;
 		$lock_str = "lock out";
 		break;
-	case "3":
+	case "4":
 	case "both":
 		$lock = 3;
 		$lock_str = "lock both";
 		break;
 	default:
-		die("Usage: ".$_SERVER['PHP_SELF']."?modeid=[0|1|2|3] or ?mode=[none|in|out|both|]<br>");
+		die("Usage: ".$_SERVER['PHP_SELF']."?modeid=[1|2|3|4] or ?mode=[none|in|out|both|]<br>");
 }
 
 $params = [
