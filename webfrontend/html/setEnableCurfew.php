@@ -6,6 +6,10 @@ if(empty($_GET['from']) or empty($_GET['to'])) {
 	die("Usage: ".$_SERVER['PHP_SELF']."?from=[eg. 18:00]&to=[eg. 06:00]<br>");
 }
 
+if(!isset($_GET['debug'])) {
+	die("Currently under development");
+}
+
 $params = [
     "name" => "Daemon",
     "filename" => "$lbplogdir/sureflap.log",
