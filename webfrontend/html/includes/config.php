@@ -20,7 +20,7 @@ $endpoint = "https://app.api.surehub.io";
 $found = false;
 if($config_http_send == 1) {
 	$miniservers = LBSystem::get_miniservers();
-	foreach ($miniservers as $miniserver) {		
+	foreach ($miniservers as $miniserver) {	
 		if($miniserver['Name'] == $config_miniserver) {
 			if($miniserver['PreferHttps'] == 1) {
 				LOGDEB("sending encrypted in https-Mode");
@@ -33,8 +33,8 @@ if($config_http_send == 1) {
 			}
 			$response_endpoint = $response_endpoint.$miniserver['Credentials']."@".
 								 $miniserver['IPAddress'].":".$miniserver_port."/dev/sps/io/";
-		}
-		break;
+			break;
+		}		
 	}
 }
 
