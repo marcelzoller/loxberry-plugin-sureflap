@@ -10,6 +10,7 @@ if(isset($_GET['name'])) {
 if(empty($_GET['petname'])){
 	die("Usage: ".$_SERVER['PHP_SELF']."?petname=[...]&location=[1|2] or [in|out]\n");
 }
+// better use with radiobutton
 if(isset($_GET['locationLox'])) {
 	$_GET['location'] = $_GET['locationLox'] + 1;
 }	

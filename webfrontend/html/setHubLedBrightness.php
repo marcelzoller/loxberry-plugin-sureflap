@@ -1,6 +1,11 @@
 <?php
 require_once "loxberry_log.php";
 
+// better use with radiobutton
+if(isset($_GET['modeLox'])) {
+	$_GET['mode'] = $_GET['modeLox'] + 1;
+}
+
 // check inputs
 $led_mode = $_GET['mode'].$_GET['modeid'];
 switch($led_mode) {
@@ -60,7 +65,7 @@ if($device_led_id == $led) {
 
 if($config_http_send == 1) {	
 	// Only send changed values
-	$_GET['viparam'] = "DeviceLedMode;DeviceLedModeDesc";
+	$_GET['viparam'] = "DeviceLedMode;DeviceLedModeLox;DeviceLedModeDesc";
 	// Convert value
 	include 'includes/getDevices.php';
 	// Responce to virutal input
