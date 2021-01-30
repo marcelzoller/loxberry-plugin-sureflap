@@ -1,124 +1,101 @@
-<h2>Settings SureFlap Connect</h2>
-	<form method="post" data-ajax="false" name="main_form" id="main_form" action="index.cgi">
-		<input type="hidden" name="save" value="save">
-			<div class="form-group">
-				<table class="formtable" border="0" width="100%">
-					<tr>
-						<td width="25%">
-							<label id="labelip"><b><TMPL_VAR BASIC.SUREFLAP_EMAIL></b></label>
-						</td>
-						<td width="50%">
-							<input  name="EMAIL" type="text" class="textfield"
-								value="<TMPL_VAR NAME=EMAIL>" data-validation-error-msg="* Please enter the email">
-						</td>
-						<td width="25%">
-							&nbsp;
-							<font size="-1"><TMPL_VAR BASIC.SUREFLAP_HEMAIL></font>
-						</td>
-					</tr>
-					<tr>
-						<td width="25%">
-							<label id="labelip"><b><TMPL_VAR BASIC.SUREFLAP_PASSWORD></b></label>
-						</td>
-						<td width="50%">
-						<table border=0>
-							<tr><td>
-							<input  name="PASSWORD" type="password" id="pwinput" class="textfield"
-								value="<TMPL_VAR NAME=PASSWORD>" data-validation-error-msg="* Please enter the password">
-							</td><td>
-									<font size="-1"><TMPL_VAR BASIC.SUREFLAP_PASSWORDSHOW></font>
-							</td><td>
+<h2>Settings SureFlap Connect&nbsp;<font size="-1">by Marcel Zoller & Daniel Kieslinger</font></h2>
+<form method="post" data-ajax="false" name="main_form" id="main_form" action="index.cgi">
+	<input type="hidden" name="save" value="save">
+		<div class="form-group">
+			<table class="formtable" border="0" width="700">
+				<tr>				
+					<td width="200">
+						<label id="labelip"><b><TMPL_VAR BASIC.SUREFLAP_EMAIL></b></label><br/>
+					</td>
+					<td colspan=2>
+						<input name="EMAIL" type="text" class="textfield"
+							value="<TMPL_VAR NAME=EMAIL>" data-validation-error-msg="* Please enter the email" />
+						&shy;
+						<font size="-1"><TMPL_VAR BASIC.SUREFLAP_HEMAIL> <a href="<TMPL_VAR BASIC.SUREFLAP_HEMAIL_LINK>" target=_blank"><TMPL_VAR BASIC.SUREFLAP_HEMAIL_LINK></a></font>
+					</td>
+				</tr>
+				<tr><td>&nbsp;</td></tr>
+				<tr>
+					<td width="200">
+						<label id="labelip"><b><TMPL_VAR BASIC.SUREFLAP_PASSWORD></b></label><br/>
+					</td>
+					<td colspan=2>
+						<table border=0 width="100%">
+							<tr><td colspan=2>
+								<input class="textfield" name="PASSWORD" id="pwinput" type="password"
+									value="<TMPL_VAR NAME=PASSWORD>" data-validation-error-msg="* Please enter the password" />
+							</td>
+							<td width="210">
+								<label size="-1"><TMPL_VAR BASIC.SUREFLAP_PASSWORDSHOW>
 									<input type="checkbox" id="pwcheck" />
+								</label>							
 							</td></tr>
-							</table>
-						</td>
-						<td width="25%">
-							&nbsp;
-							<font size="-1"><TMPL_VAR BASIC.SUREFLAP_HPASSWORD></font>
-						</td>
-					</tr>
-					
-					
-
-					
-					
-					
-					<tr>
-						<td width="25%">
-							<label id="labelfbpass"><b>Miniserver:</b></label>
-						</td>
-						<td width="50%">
-							<select id="miniserver" name="miniserver" data-mini="true" onchange="selMS(this);">
-								<TMPL_VAR NAME=LOXLIST>
-							</select>
-						</td>
-						<td width="25%">
-							&nbsp;
-							<font size="-1"><TMPL_VAR BASIC.SUREFLAP_HMINISERVER></font>
-						</td>
-					</tr>				
-					<tr>
-						<td width="25%">
-							<label id="labelmsenabled"><b><TMPL_VAR BASIC.SUREFLAP_HTML></b></label>
-						</td>
-						<td width="50%">
-						<table border=0>
 							<tr><td>
-							  <fieldset>
-								 <select id="sendhtml" name="sendhtml" data-role="flipswitch" disabled=disabled>
-									<option value="0">Aus</option>
-									<option selected=selected value="1">Ein</option>
-									</select>
-							  </fieldset>
-							</td><td>
+								<font size="-1"><TMPL_VAR BASIC.SUREFLAP_HPASSWORD></font>
 							</td></tr>
 						</table>
-						</td>
-						<td width="25%">
-							&nbsp;
-							<font size="-1"><TMPL_VAR BASIC.SUREFLAP_HHTML></font>
-						</td>
-					</tr>
-					<tr>
-						<td width="25%">
-							&nbsp;
-						</td>
-						<td width="50%">
-							<center>
-								<a id="btncancel" data-role="button" data-inline="true" data-mini="true" data-icon="delete" href="./index.cgi?form=1">Abbrechen</a>
-								<button type="submit" form="main_form" id="do" data-role="button" data-inline="true" data-mini="true" data-icon="check">Speichern</button>
-								<a id="button" data-icon="info" data-role="button" data-inline="true" data-mini="true" 
-								href="<TMPL_VAR NAME=LOGDATEI>" 
-								target="_blank">Logdatei</a>
-							</center>
-						</td>
-						<td width="25%">
-							&nbsp;
-						</td>
-					</tr>		
-			</table>
-			<table class="formtable" border="0" width="100%">
-					
-					<hr>
-					<tr>
-						<td width="25%">
-							<b><TMPL_VAR BASIC.SUREFLAP_GET></b>
-						</td>
-						<td colspan=2 width="50%">
-							&nbsp;&nbsp;<font size="-1">URL: <a href="<TMPL_VAR NAME=WEBSITE1>" target=_blank"><TMPL_VAR NAME=WEBSITE1></a></font><br>
-							&nbsp;&nbsp;<font size="-1">URL: <a href="<TMPL_VAR NAME=WEBSITE2>" target=_blank"><TMPL_VAR NAME=WEBSITE2></a></font><br>
-							&nbsp;&nbsp;<font size="-1">URL: <a href="<TMPL_VAR NAME=WEBSITE3>" target=_blank"><TMPL_VAR NAME=WEBSITE3></a></font><br>
-							&nbsp;&nbsp;<font size="-1">URL: <a href="<TMPL_VAR NAME=WEBSITE4>" target=_blank"><TMPL_VAR NAME=WEBSITE4></a></font><br>
-							&nbsp;&nbsp;<font size="-1">URL: <a href="<TMPL_VAR NAME=WEBSITE5>" target=_blank"><TMPL_VAR NAME=WEBSITE5></a></font><br>
-							&nbsp;&nbsp;<font size="-1">URL: <a href="<TMPL_VAR NAME=WEBSITE6>" target=_blank"><TMPL_VAR NAME=WEBSITE6></a></font>
-						</td>
-						<td width="25%">
-							<TMPL_VAR BASIC.SUREFLAP_HGET>
-						</td>
-					</tr>	
-			</tabel>
-		</div>
-	</form>
+					</td>
+				</tr>
+				<tr><td>&nbsp;</td></tr>		
+				<tr>
+					<td width="200">
+						<label id="labelmsenabled"><b><TMPL_VAR BASIC.SUREFLAP_HTML></b></label>
+					</td>
+					<td colspan=2">
+						<select name="HTTPSEND" data-role="flipswitch">
+							<option <TMPL_VAR NAME=HTTPSENDNO> value="0"><TMPL_VAR BASIC.SUREFLAP_HTML_OFF></option>
+							<option <TMPL_VAR NAME=HTTPSENDYES> value="1"><TMPL_VAR BASIC.SUREFLAP_HTML_ON></option>
+						</select>
+						<font size="-1"><TMPL_VAR BASIC.SUREFLAP_HHTML></font>
+					</td>
+				</tr>
+				<tr>
+					<td width="200">
+						&nbsp;
+					</td>
+					<td colspan=2">
+						<select name="MINISERVER" data-mini="true" onchange="selMS(this);">
+							<TMPL_VAR NAME=LOXLIST>
+						</select>
+						<font size="-1"><TMPL_VAR BASIC.SUREFLAP_HMINISERVER></font><br/><br/>
+						<font size="-1"><TMPL_VAR BASIC.SUREFLAP_VINAME></font>
+					</td>
+				</tr>								
+				<tr><td>&nbsp;</td></tr>
+				<tr>
+					<td width="200">
+						&nbsp;
+					</td>
+					<td colspan=2>
+							<a id="btncancel" data-role="button" data-inline="true" data-mini="true" data-icon="delete" href="./index.cgi?form=1"><TMPL_VAR BASIC.SUREFLAP_CANCEL></a>
+							<button type="submit" form="main_form" id="do" data-role="button" data-inline="true" data-mini="true" data-icon="check"><TMPL_VAR BASIC.SUREFLAP_SAVE></button>
+							<a id="button" data-icon="info" data-role="button" data-inline="true" data-mini="true" 
+							href="<TMPL_VAR NAME=LOGDATEI>" 
+							target="_blank"><TMPL_VAR BASIC.SUREFLAP_LOG></a>
+					</td>
+				</tr>		
+		</table>
+		<br/><hr><br/>
+		<table class="formtable" border="0" width="700">				
+				<tr>
+					<td width="200" valign=top>
+						<b><TMPL_VAR BASIC.SUREFLAP_GET></b>
+					</td>
+					<td colspan=2>
+						<font size="-1"><b><TMPL_VAR BASIC.SUREFLAP_HGET></b></font><br/>
+						<font size="-1"><a href="<TMPL_VAR NAME=WEBSITE_GET>" target=_blank"><TMPL_VAR NAME=WEBSITE_GET></a></font><br/>
+						<font size="-1"><TMPL_VAR BASIC.SUREFLAP_IGET></font><br/><br/>
+						
+						<font size="-1"><b><TMPL_VAR BASIC.SUREFLAP_HSET></b></font><br/>
+						<font size="-1"><a href="<TMPL_VAR NAME=WEBSITE_SET1>" target=_blank"><TMPL_VAR NAME=WEBSITE_SET1></a></font><br/><br/>
+						<font size="-1"><a href="<TMPL_VAR NAME=WEBSITE_SET2>" target=_blank"><TMPL_VAR NAME=WEBSITE_SET2></a></font><br/><br/>
+						<font size="-1"><a href="<TMPL_VAR NAME=WEBSITE_SET3>" target=_blank"><TMPL_VAR NAME=WEBSITE_SET3></a></font><!--<br/><br/>
+						<font size="-1"><a href="<TMPL_VAR NAME=WEBSITE_SET4>" target=_blank"><TMPL_VAR NAME=WEBSITE_SET4></a></font><!-- -->
+					</td>
+				</tr>	
+		</table>
+	</div>
+</form>
 
 
 

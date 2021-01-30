@@ -58,4 +58,8 @@ echo "<INFO> Plugin Data folder is: $PDATA"
 echo "<INFO> Plugin Log folder (on RAMDISK!) is: $PLOG"
 echo "<INFO> Plugin CONFIG folder is: $PCONFIG"
 
+# Create subfolder for includes
+echo "<INFO> Creating subfolder $LBPHTML/$PDIR/includes"
+mkdir -p $LBPHTML/$PDIR/includes
+
 exit 0
