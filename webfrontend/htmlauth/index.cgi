@@ -85,14 +85,20 @@ for (my $i = 1; $i <=  keys(%miniservers);$i++) {
 $template->param( EMAIL => $EMAIL);
 $template->param( PASSWORD => $PASSWORD);
 $template->param( LOXLIST => $MSselectlist);
-if ($ENV{SERVER_PORT} != 80) {
+$server_protocol = "http";
+if (lc($ENV{HTTPS}) eq "on") {
+	$server_protocol = "https";
+}
+if ($ENV{SERVER_PORT} != 80 and $ENV{SERVER_PORT} != 443) {
 	$server_port = ":".$ENV{SERVER_PORT};
 }
-$template->param( WEBSITE_GET => "http://$ENV{SERVER_NAME}$server_port/plugins/$lbpplugindir/getData.php");
-$template->param( WEBSITE_SET1 => "http://$ENV{SERVER_NAME}$server_port/plugins/$lbpplugindir/setPetLocation.php");
-$template->param( WEBSITE_SET2 => "http://$ENV{SERVER_NAME}$server_port/plugins/$lbpplugindir/setLockMode.php");
-$template->param( WEBSITE_SET3 => "http://$ENV{SERVER_NAME}$server_port/plugins/$lbpplugindir/setHubLedBrightness.php");
-$template->param( WEBSITE_SET4 => "http://$ENV{SERVER_NAME}$server_port/plugins/$lbpplugindir/setEnableCurfew.php");
+$server_path = "$server_protocol://$ENV{SERVER_NAME}$server_port/plugins/$lbpplugindir";
+
+$template->param( WEBSITE_GET  => "$server_path/getData.php");
+$template->param( WEBSITE_SET1 => "$server_path/setPetLocation.php");
+$template->param( WEBSITE_SET2 => "$server_path/setLockMode.php");
+$template->param( WEBSITE_SET3 => "$server_path/setHubLedBrightness.php");
+$template->param( WEBSITE_SET4 => "$server_path/setEnableCurfew.php");
 $template->param( LOGDATEI => "/admin/system/tools/logfile.cgi?logfile=$lbplogdir/sureflap.log&header=html&format=template");
 #$template->param( WEBSTATUS => "http://$ENV{SERVER_NAME}:$server_port/plugins/$lbpplugindir/status.cgi");  
  if ($HTTPSEND == 1) {
