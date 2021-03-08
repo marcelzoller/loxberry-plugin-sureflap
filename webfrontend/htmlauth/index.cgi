@@ -96,9 +96,10 @@ $server_path = "$server_protocol://$ENV{SERVER_NAME}$server_port/plugins/$lbpplu
 
 $template->param( WEBSITE_GET  => "$server_path/getData.php");
 $template->param( WEBSITE_SET1 => "$server_path/setPetLocation.php");
-$template->param( WEBSITE_SET2 => "$server_path/setLockMode.php");
-$template->param( WEBSITE_SET3 => "$server_path/setHubLedBrightness.php");
-$template->param( WEBSITE_SET4 => "$server_path/setEnableCurfew.php");
+$template->param( WEBSITE_SET2 => "$server_path/setPetLocking.php");
+$template->param( WEBSITE_SET3 => "$server_path/setLockMode.php");
+$template->param( WEBSITE_SET4 => "$server_path/setHubLedBrightness.php");
+$template->param( WEBSITE_SET5 => "$server_path/setCurfew.php");
 $template->param( LOGDATEI => "/admin/system/tools/logfile.cgi?logfile=$lbplogdir/sureflap.log&header=html&format=template");
 #$template->param( WEBSTATUS => "http://$ENV{SERVER_NAME}:$server_port/plugins/$lbpplugindir/status.cgi");  
  if ($HTTPSEND == 1) {
