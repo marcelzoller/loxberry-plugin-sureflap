@@ -1,5 +1,5 @@
 <?php
-if($pets) {	
+if($pets) {
 	if($_GET['petname']) {
 		LOGDEB("Parameter: petname=\"".$_GET['petname']."\"");
 	}	
@@ -55,7 +55,25 @@ if($pets) {
 			// Last location time			
 			$pet_loc_time = strtotime($pet['position']['since']);
 			print $multi."PetLocationSince@".date('d.m.Y H:i:s', $pet_loc_time)."<br>";
-			print $multi."PetLocationSinceLox@".epoch2lox($pet_loc_time)."<br>";
+			print $multi."PetLocationSinceLox@".epoch2lox($pet_loc_time)."<br>";			
+			// Pet-Locking
+			foreach($device_pet_locking AS $pet_locking) {
+				if($pet_locking['id'] == $pet['tag_id']) {
+					$curr_pet_locking = $pet_locking;
+					print $multi."PetLocking@".$curr_pet_locking['profile']."<br>";
+					switch($curr_pet_locking['profile']) {	
+						case "2":
+							print $multi."PetLockingLox@0<br>";
+							print $multi."PetLockingDesc@Outdoor<br>";
+							break;
+						case "3":
+							print $multi."PetLockingLox@1<br>";
+							print $multi."PetLockingDesc@Indoor<br>";
+							break;
+					}
+					break;
+				}
+			}
 			print "<br>";
 		}	
 	}
