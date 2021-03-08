@@ -1,11 +1,11 @@
 <?php
-if($pets) {	
+if($pets) {
 	if($_GET['petname']) {
 		LOGDEB("Parameter: petname=\"".$_GET['petname']."\"");
 	}	
 	
 	$found = false;
-	foreach($pets AS $i=>$pet) {
+	foreach($pets AS $pet) {
 		$multi = $pet['name']."@";
 		
 		if($pet['name'] == $_GET['petname'] OR empty($_GET['petname'])){
@@ -58,7 +58,7 @@ if($pets) {
 			print $multi."PetLocationSinceLox@".epoch2lox($pet_loc_time)."<br>";			
 			// Pet-Locking
 			foreach($device_pet_locking AS $pet_locking) {
-				if($pet_locking['index'] == $i) {
+				if($pet_locking['id'] == $pet['tag_id']) {
 					$curr_pet_locking = $pet_locking;
 					print $multi."PetLocking@".$curr_pet_locking['profile']."<br>";
 					switch($curr_pet_locking['profile']) {	
