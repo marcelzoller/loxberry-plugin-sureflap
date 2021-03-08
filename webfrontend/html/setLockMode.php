@@ -48,7 +48,7 @@ $background = true;
 include 'getData.php';
 
 if($device_lock_id == $lock) {
-	print "Lockmode on \"$flapname\" is \"$lock_str\". No change necessary.<br><br>";
+	print "Lockmode on \"$flapname\" is \"$lock_str\". No change necessary.";
 	LOGINF("Lockmode on \"$flapname\" is \"$lock_str\". No change necessary.");
 } else {
 	LOGDEB("Starting request...");
@@ -57,18 +57,19 @@ if($device_lock_id == $lock) {
 	LOGDEB("Request received with code: ".$curl['http_code']);
 
 	if($curl['result']['data']['locking'] == $lock) {
-		print "Successfully set lockmode for \"$flapname\" to \"$lock_str\"<br><br>";
+		print "Successfully set lockmode for \"$flapname\" to \"$lock_str\"";
 		LOGINF("Successfully set lockmode for \"$flapname\" to \"$lock_str\"");
 		
 		// Build data to responce
 		$devices = array(array("id" => $flap, "name" => $flapname, "product_id" => $flaptype, "control" => $curl['result']['data']));		
 	} else {
-		print "Lockmode change failed!<br>";
+		print "Lockmode change failed!";
 		LOGERR("Lockmode change failed!");
 	}
 }
 
 if($config_http_send == 1) {
+	print "<br><br>";
 	// Only send changed values
 	$_GET['viparam'] = "DeviceLockMode;DeviceLockModeLox;DeviceLockModeDesc";
 	// Convert value

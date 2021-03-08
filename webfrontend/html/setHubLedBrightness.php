@@ -43,7 +43,7 @@ $background = true;
 include 'getData.php';
 
 if($device_led_id == $led) {
-	print "LED mode on \"$hubname\" is \"$led_str\". No change necessary.<br><br>";
+	print "LED mode on \"$hubname\" is \"$led_str\". No change necessary.";
 	LOGINF("LED mode on \"$hubname\" is \"$led_str\". No change necessary.");
 } else {
 	LOGDEB("Starting request...");
@@ -52,18 +52,19 @@ if($device_led_id == $led) {
 	LOGDEB("Request received with code: ".$curl['http_code']);
 
 	if($curl['result']['data']['led_mode'] == $led) {
-		print "Successfully set LED mode for \"$hubname\" to \"$led_str\"<br><br>";
+		print "Successfully set LED mode for \"$hubname\" to \"$led_str\"";
 		LOGINF("Successfully set LED mode for \"$hubname\" to \"$led_str\"");
 
 		// Build data to responce
 		$devices = array(array("id" => $hub, "name" => $hubname, "product_id" => 1, "control" => $curl['result']['data']));		
 	} else {
-		print "LED Brightness Change Failed!<br>";
+		print "LED Brightness Change Failed!";
 		LOGERR("LED Brightness Change Failed!");
 	}	
 }
 
-if($config_http_send == 1) {	
+if($config_http_send == 1) {
+	print "<br><br>";
 	// Only send changed values
 	$_GET['viparam'] = "DeviceLedMode;DeviceLedModeLox;DeviceLedModeDesc";
 	// Convert value

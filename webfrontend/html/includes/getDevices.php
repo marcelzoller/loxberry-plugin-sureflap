@@ -5,7 +5,7 @@ if($devices) {
 	}
 	
 	$found = false;
-	foreach($devices AS $i=>$device) {
+	foreach($devices AS $device) {
 		$multi = $device['name']."@";
 		
 		if($device['name'] == $_GET['devicename'] OR empty($_GET['devicename'])) {
@@ -119,18 +119,19 @@ if($devices) {
 				print $multi."DeviceLockModeLox@".$device_lock_id."<br>";
 				print $multi."DeviceLockModeDesc@".$device_lock."<br>";
 				// Curfew-Status
-				if($device['control']['curfew']) {
-					unset($curfew_string);
-					foreach($device['control']['curfew'] AS $curfew) {
-						if($curfew['enabled'] == true) {
-							if(!empty($curfew_string)) { 
-								$curfew_string = $curfew_string.","; 
-							}
-							$curfew_string = $curfew_string.$curfew['lock_time']."-".$curfew['unlock_time'];
+				$device_curfew = $device['control']['curfew'];
+				unset($curfew_string);
+				foreach($device_curfew AS $curfew) {
+					if($curfew['enabled'] == true) {
+						if(!empty($curfew_string)) { 
+							$curfew_string = $curfew_string.","; 
 						}
+						$curfew_string = $curfew_string.$curfew['lock_time']."-".$curfew['unlock_time'];
 					}
 				}
 				print $multi."DeviceCurfew@".$curfew_string."<br>";
+				// Pet-Locking
+				$device_pet_locking = $device['tags'];
 			}
 			print("<br>");
 		}

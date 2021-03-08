@@ -53,7 +53,7 @@ if($petname != $_GET['petname']) {
 }
 
 if($curr_location_id == $location) {
-	print "Location for \"$petname\" is \"$location_str\". No change necessary.<br><br>";
+	print "Location for \"$petname\" is \"$location_str\". No change necessary.";
 	LOGINF("Location for \"$petname\" is \"$location_str\". No change necessary.");
 } else {
 	// Set Timezone to UTC
@@ -67,18 +67,19 @@ if($curr_location_id == $location) {
 	LOGDEB("Request received with code: ".$curl['http_code']);
 
 	if($curl['result']['data']['where'] == $location) {
-		print "Successfully set pet location for \"$petname\" to \"$location_str\"<br><br>";
+		print "Successfully set pet location for \"$petname\" to \"$location_str\"";
 		LOGINF("Successfully set pet location for \"$petname\" to \"$location_str\"");
 		
 		// Build data to responce
 		$pets = array(array("id" => $petid, "name" => $petname, "position" => $curl['result']['data']));		
 	} else {
-		print "Set Location Failed!<br>";
+		print "Set Location Failed!";
 		LOGERR("Set Location Failed!");
 	}
 }
 
 if($config_http_send == 1) {
+	print "<br><br>";
 	// Only send changed values
 	$_GET['viparam'] = "PetLocation;PetLocationLox;PetLocationDesc;PetLocationSince;PetLocationSinceLox";
 	// Convert value
