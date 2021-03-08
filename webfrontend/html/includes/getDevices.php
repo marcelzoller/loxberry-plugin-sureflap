@@ -129,6 +129,9 @@ if($devices) {
 						$curfew_string = $curfew_string.$curfew['lock_time']."-".$curfew['unlock_time'];
 					}
 				}
+				if(empty($curfew_string)) { 
+					$curfew_string = "-"; 
+				}
 				print $multi."DeviceCurfew@".$curfew_string."<br>";
 				// Pet-Locking
 				$device_pet_locking = $device['tags'];
