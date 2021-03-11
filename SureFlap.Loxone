@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ControlList Version="203" LxAV="40" NextObj="11" NextConst="1" NextNote="1" NextMem="1">
-	<C Type="Document" V="145" U="16a73537-02cf-9dfd-ffffe5ec67b53a4f" Title="SureFlap" ConfigVersion="12000224" PaperFormat="2" SPSfreq="100" OpenIsHigh="false" Date="2021-03-11 20:15:36" CDate="" BDate="" DateS="384722136" Street="" Town="" PostCode="" Ctry="US" Latitude="38.9108" Longitude="-75.5277" SL="16" Creator="Daniel Kieslinger" Tel="0" EMail="0" Logo="" uuidNotifications="16a73537-02ce-9df9-ffffe5ec67b53a4f" uuidFavSeq="16a73537-02ce-9dfb-ffffe5ec67b53a4f" uuidFavCol="16a73537-02ce-9dfc-ffffe5ec67b53a4f" FC="hsv(25,96,50);hsv(24,95,80);hsv(337,94,50)" uuidTime="16a73537-02ce-9dfa-ffffe5ec67b53a4f" UnitPrecipitation="1" Currency="€" UpdTime="120" AUE="true" CrashL="true" Geo="3" NumO="436">
+	<C Type="Document" V="145" U="16a73537-02cf-9dfd-ffffe5ec67b53a4f" Title="SureFlap" ConfigVersion="12000224" PaperFormat="2" SPSfreq="100" OpenIsHigh="false" Date="2021-03-11 20:56:18" CDate="" BDate="" DateS="384724578" Street="" Town="" PostCode="" Ctry="US" Latitude="38.9108" Longitude="-75.5277" SL="16" Creator="Daniel Kieslinger" Tel="0" EMail="0" Logo="" uuidNotifications="16a73537-02ce-9df9-ffffe5ec67b53a4f" uuidFavSeq="16a73537-02ce-9dfb-ffffe5ec67b53a4f" uuidFavCol="16a73537-02ce-9dfc-ffffe5ec67b53a4f" FC="hsv(25,96,50);hsv(24,95,80);hsv(337,94,50)" uuidTime="16a73537-02ce-9dfa-ffffe5ec67b53a4f" UnitPrecipitation="1" Currency="€" UpdTime="120" AUE="true" CrashL="true" Geo="3" NumO="436">
 		<C Type="LoxCaption" V="145" U="16a73537-02d1-9dff-ffffe5ec67b53a4f" Title="Symbole" Cl="0,0,0" WF="16384" CaptionType="5" SubType="5">
 			<C Type="IconCaptionState" V="145" U="16a73537-02d3-9e01-ffffe5ec67b53a4f" Title="Statussymbole" WF="16384">
 				<C Type="IconState" V="145" U="00000000-0000-0001-2200000000000000" Title="Nicht zugeordnet" WF="16384"/>
@@ -802,12 +802,12 @@
 						<IoData Cr="1697195c-02e7-2fb9-ffff7a256abb9706" Pr="169718d4-00ae-82cd-ffff7a256abb9706" St="2"/>
 						<Display Type="2" Unit="&lt;v&gt;" StateOnly="true"/>
 					</C>
-					<C Type="VirtualOutCmd" IName="VQC1" V="145" U="16ad6466-0176-ef98-ffff7a256abb9706" Title="SureFlap-Testkatze1-SetPetLocking" Nio="1" WF="16400" CmdOn="/plugins/sureflap/setPetLocking.php?petname=Testkatze1&amp;lockingLox=&lt;v&gt;&amp;viname=SureFlap" SourceValHigh="10" DestValHigh="10" Tx="false">
+					<C Type="VirtualOutCmd" IName="VQC1" V="145" U="16ad6466-0176-ef98-ffff7a256abb9706" Title="SureFlap-Testkatze1-SetPetLocking" Nio="1" WF="16400" Analog="true" CmdOn="/plugins/sureflap/setPetLocking.php?petname=Testkatze1&amp;lockingLox=&lt;v&gt;&amp;viname=SureFlap" SourceValHigh="10" DestValHigh="10" Tx="false">
 						<Co K="I" Nc="1" U="16ad6466-0176-ef97-ffff4c2221902d05">
 							<In Input="16ee63d1-03cb-3434-ffff0e3690fe7052"/>
 						</Co>
 						<IoData Cr="16a73537-0317-9e8d-ffffe5ec67b53a4f" Pr="169718d4-00ae-82cd-ffff7a256abb9706" St="2"/>
-						<Display Unit="&lt;v.1&gt;" StateOnly="true"/>
+						<Display Type="2" Unit="&lt;v.1&gt;" StateOnly="true"/>
 					</C>
 					<C Type="VirtualOutCmd" IName="VQC15" V="145" U="16affff1-0297-a461-ffff7a256abb9706" Title="SureFlap-SetHubLedBrightness" Nio="1" WF="16400" Analog="true" CmdOn="/plugins/sureflap/setHubLedBrightness.php?modeLox=&lt;v&gt;&amp;viname=SureFlap" SourceValHigh="10" DestValHigh="10" Tx="false">
 						<Co K="I" Nc="1" U="16affff1-0297-a460-ffff161c0f9690e1">
@@ -1759,7 +1759,7 @@ In diesem Fall muss auch im Teil hinter &quot;SureFlap&quot; der Bindestrich ers
 					<Co K="AQ" U="16ee6398-032e-12da-fffff48e60373e2f"/>
 					<Co K="Q" U="16ee6398-032e-12db-fffff48e60373e2f"/>
 				</C>
-				<C Type="OutputRef" V="145" U="16ee63d1-03cb-3435-ffff7a256abb9706" Title="SureFlap-Testkatze1-SetPetLocking" Px="8448" Py="14112" Px2="10560" Py2="14304" Cl="238,238,238" Nio="2" Ref="16ad6466-0176-ef98-ffff7a256abb9706" WF="147456" LinkRefType="74">
+				<C Type="OutputRef" V="145" U="16ee63d1-03cb-3435-ffff7a256abb9706" Title="SureFlap-Testkatze1-SetPetLocking" Px="8448" Py="14112" Px2="10560" Py2="14304" Cl="238,238,238" Nio="2" Ref="16ad6466-0176-ef98-ffff7a256abb9706" WF="147456" Analog="true" LinkRefType="74">
 					<Co K="AI" Nc="1" U="16ee63d1-03cb-3433-ffff0e3690fe7052">
 						<In Input="16ee624b-03a0-51a7-ffff66afb7a2cacb"/>
 					</Co>
