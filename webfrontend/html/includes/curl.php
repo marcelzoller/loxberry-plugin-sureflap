@@ -13,9 +13,6 @@ function start_curl($ch) {
 	
 	$curl_array['result'] = json_decode(curl_exec($ch),true);
 	$curl_array['http_code'] = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-	if(curl_errno($ch) > 0) {
-		die("Following error occured while curl: ".curl_error($ch));
-	}
 	curl_close($ch);
 	return $curl_array;
 }
