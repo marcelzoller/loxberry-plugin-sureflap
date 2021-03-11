@@ -1,4 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
+<<<<<<< Updated upstream
 <ControlList Version="194" LxAV="35" NextObj="4" NextConst="1" NextNote="1" NextMem="1">
 	<C Type="Document" V="141" U="16a73537-02cf-9dfd-ffffe5ec67b53a4f" Title="SureFlap" ConfigVersion="11010914" PaperFormat="2" SPSfreq="100" OpenIsHigh="false" Date="2021-01-26 18:49:54" CDate="" BDate="" DateS="380915394" Street="" Town="" PostCode="" Ctry="US" Latitude="38.9108" Longitude="-75.5277" SL="16" Creator="Daniel Kieslinger" Tel="0" EMail="0" Logo="" uuidNotifications="16a73537-02ce-9df9-ffffe5ec67b53a4f" uuidFavSeq="16a73537-02ce-9dfb-ffffe5ec67b53a4f" uuidFavCol="16a73537-02ce-9dfc-ffffe5ec67b53a4f" FC="hsv(25,96,50);hsv(24,95,80);hsv(337,94,50)" uuidTime="16a73537-02ce-9dfa-ffffe5ec67b53a4f" UnitPrecipitation="1" Currency="€" UpdTime="120" AUE="true" CrashL="true" Geo="3" NumO="438">
 		<C Type="LoxCaption" V="141" U="16a73537-02d1-9dff-ffffe5ec67b53a4f" Title="Symbole" Cl="0,0,0" WF="16384" CaptionType="5" SubType="5">
@@ -144,6 +145,153 @@
 				<C Type="IconPlace" V="141" U="00000000-0000-0032-2100000000000000" Title="Serverraum" WF="16384" Ix="49"/>
 				<C Type="IconPlace" V="141" U="00000000-0000-0033-2100000000000000" Title="Heizraum" WF="16384" Ix="50"/>
 				<C Type="IconPlace" V="141" U="00000000-0000-0034-2100000000000000" Title="WC 2" WF="16384" Ix="51"/>
+=======
+<ControlList Version="203" LxAV="40" NextObj="11" NextConst="1" NextNote="1" NextMem="1">
+	<C Type="Document" V="145" U="16a73537-02cf-9dfd-ffffe5ec67b53a4f" Title="SureFlap" ConfigVersion="12000224" PaperFormat="2" SPSfreq="100" OpenIsHigh="false" Date="2021-03-11 20:49:30" CDate="" BDate="" DateS="384724170" Street="" Town="" PostCode="" Ctry="US" Latitude="38.9108" Longitude="-75.5277" SL="16" Creator="Daniel Kieslinger" Tel="0" EMail="0" Logo="" uuidNotifications="16a73537-02ce-9df9-ffffe5ec67b53a4f" uuidFavSeq="16a73537-02ce-9dfb-ffffe5ec67b53a4f" uuidFavCol="16a73537-02ce-9dfc-ffffe5ec67b53a4f" FC="hsv(25,96,50);hsv(24,95,80);hsv(337,94,50)" uuidTime="16a73537-02ce-9dfa-ffffe5ec67b53a4f" UnitPrecipitation="1" Currency="€" UpdTime="120" AUE="true" CrashL="true" Geo="3" NumO="436">
+		<C Type="LoxCaption" V="145" U="16a73537-02d1-9dff-ffffe5ec67b53a4f" Title="Symbole" Cl="0,0,0" WF="16384" CaptionType="5" SubType="5">
+			<C Type="IconCaptionState" V="145" U="16a73537-02d3-9e01-ffffe5ec67b53a4f" Title="Statussymbole" WF="16384">
+				<C Type="IconState" V="145" U="00000000-0000-0001-2200000000000000" Title="Nicht zugeordnet" WF="16384"/>
+				<C Type="IconState" V="145" U="00000000-0000-0002-2200000000000000" Title="Schwerer Fehler" WF="16384" Ix="1"/>
+				<C Type="IconState" V="145" U="00000000-0000-0003-2200000000000000" Title="Kleiner Fehler" WF="16384" Ix="2"/>
+				<C Type="IconState" V="145" U="00000000-0000-0004-2200000000000000" Title="Warnung" WF="16384" Ix="3"/>
+				<C Type="IconState" V="145" U="00000000-0000-0005-2200000000000000" Title="Info" WF="16384" Ix="4"/>
+				<C Type="IconState" V="145" U="00000000-0000-0006-2200000000000000" Title="Neutral" WF="16384" Ix="5"/>
+				<C Type="IconState" V="145" U="00000000-0000-0007-2200000000000000" Title="Aktiv" WF="16384" Ix="6"/>
+				<C Type="IconState" V="145" U="00000000-0000-0008-2200000000000000" Title="Inaktiv" WF="16384" Ix="7"/>
+				<C Type="IconState" V="145" U="00000000-0000-0009-2200000000000000" Title="Alarm" WF="16384" Ix="8"/>
+				<C Type="IconState" V="145" U="00000000-0000-000a-2200000000000000" Title="Scharf" WF="16384" Ix="9"/>
+				<C Type="IconState" V="145" U="00000000-0000-000b-2200000000000000" Title="Unscharf" WF="16384" Ix="10"/>
+				<C Type="IconState" V="145" U="00000000-0000-000c-2200000000000000" Title="Oben" WF="16384" Ix="11"/>
+				<C Type="IconState" V="145" U="00000000-0000-000d-2200000000000000" Title="Mitte" WF="16384" Ix="12"/>
+				<C Type="IconState" V="145" U="00000000-0000-000e-2200000000000000" Title="Unten" WF="16384" Ix="13"/>
+				<C Type="IconState" V="145" U="00000000-0000-000f-2200000000000000" Title="Auf" WF="16384" Ix="14"/>
+				<C Type="IconState" V="145" U="00000000-0000-0010-2200000000000000" Title="Zu" WF="16384" Ix="15"/>
+				<C Type="IconState" V="145" U="00000000-0000-0011-2200000000000000" Title="Ein" WF="16384" Ix="16"/>
+				<C Type="IconState" V="145" U="00000000-0000-0012-2200000000000000" Title="Aus" WF="16384" Ix="17"/>
+				<C Type="IconState" V="145" U="00000000-0000-0013-2200000000000000" Title="Voll" WF="16384" Ix="18"/>
+				<C Type="IconState" V="145" U="00000000-0000-0014-2200000000000000" Title="Leer" WF="16384" Ix="19"/>
+				<C Type="IconState" V="145" U="00000000-0000-0015-2200000000000000" Title="Fertig" WF="16384" Ix="20"/>
+				<C Type="IconState" V="145" U="00000000-0000-0016-2200000000000000" Title="In Arbeit" WF="16384" Ix="21"/>
+				<C Type="IconState" V="145" U="00000000-0000-0017-2200000000000000" Title="Heiß" WF="16384" Ix="22"/>
+				<C Type="IconState" V="145" U="00000000-0000-0018-2200000000000000" Title="Kalt" WF="16384" Ix="23"/>
+				<C Type="IconState" V="145" U="00000000-0000-0019-2200000000000000" Title="Webpage" WF="16384" Ix="24"/>
+			</C>
+			<C Type="IconCaptionCat" V="145" U="16a73537-02d4-9e03-ffffe5ec67b53a4f" Title="Kategoriesymbole" WF="16384">
+				<C Type="IconCat" V="145" U="00000000-0000-0001-2000000000000000" Title="Nicht zugeordnet" WF="16384"/>
+				<C Type="IconCat" V="145" U="00000000-0000-0002-2000000000000000" Title="Beleuchtung" WF="16384" Ix="1"/>
+				<C Type="IconCat" V="145" U="00000000-0000-0003-2000000000000000" Title="Beschattung" WF="16384" Ix="2"/>
+				<C Type="IconCat" V="145" U="00000000-0000-0004-2000000000000000" Title="Heizung" WF="16384" Ix="3"/>
+				<C Type="IconCat" V="145" U="00000000-0000-0005-2000000000000000" Title="Klima" WF="16384" Ix="4"/>
+				<C Type="IconCat" V="145" U="00000000-0000-0006-2000000000000000" Title="Audio" WF="16384" Ix="5"/>
+				<C Type="IconCat" V="145" U="00000000-0000-0007-2000000000000000" Title="Fühler" WF="16384" Ix="6"/>
+				<C Type="IconCat" V="145" U="00000000-0000-0008-2000000000000000" Title="Stellantrieb" WF="16384" Ix="7"/>
+				<C Type="IconCat" V="145" U="00000000-0000-0009-2000000000000000" Title="Temperatur" WF="16384" Ix="8"/>
+				<C Type="IconCat" V="145" U="00000000-0000-000a-2000000000000000" Title="Präsenzerkennung" WF="16384" Ix="9"/>
+				<C Type="IconCat" V="145" U="00000000-0000-000b-2000000000000000" Title="Lüftung" WF="16384" Ix="10"/>
+				<C Type="IconCat" V="145" U="00000000-0000-000c-2000000000000000" Title="Fenster" WF="16384" Ix="11"/>
+				<C Type="IconCat" V="145" U="00000000-0000-000d-2000000000000000" Title="Sicherheit" WF="16384" Ix="12"/>
+				<C Type="IconCat" V="145" U="00000000-0000-000e-2000000000000000" Title="Kühlung" WF="16384" Ix="13"/>
+				<C Type="IconCat" V="145" U="00000000-0000-000f-2000000000000000" Title="Alarm" WF="16384" Ix="14"/>
+				<C Type="IconCat" V="145" U="00000000-0000-0010-2000000000000000" Title="Tor" WF="16384" Ix="15"/>
+				<C Type="IconCat" V="145" U="00000000-0000-0011-2000000000000000" Title="Wellness" WF="16384" Ix="16"/>
+				<C Type="IconCat" V="145" U="00000000-0000-0012-2000000000000000" Title="Technik" WF="16384" Ix="17"/>
+				<C Type="IconCat" V="145" U="00000000-0000-0013-2000000000000000" Title="Audio 2" WF="16384" Ix="18"/>
+				<C Type="IconCat" V="145" U="00000000-0000-0014-2000000000000000" Title="Beleuchtung 2" WF="16384" Ix="19"/>
+				<C Type="IconCat" V="145" U="00000000-0000-0015-2000000000000000" Title="Temperatur 2" WF="16384" Ix="20"/>
+				<C Type="IconCat" V="145" U="00000000-0000-0016-2000000000000000" Title="Melder 2" WF="16384" Ix="21"/>
+				<C Type="IconCat" V="145" U="00000000-0000-0017-2000000000000000" Title="Alarm 2" WF="16384" Ix="22"/>
+				<C Type="IconCat" V="145" U="00000000-0000-0018-2000000000000000" Title="Audio 3" WF="16384" Ix="23"/>
+				<C Type="IconCat" V="145" U="00000000-0000-0019-2000000000000000" Title="Fenster 2" WF="16384" Ix="24"/>
+				<C Type="IconCat" V="145" U="00000000-0000-001a-2000000000000000" Title="Heizung 2" WF="16384" Ix="25"/>
+				<C Type="IconCat" V="145" U="00000000-0000-001b-2000000000000000" Title="Heizventil 2" WF="16384" Ix="26"/>
+				<C Type="IconCat" V="145" U="00000000-0000-001c-2000000000000000" Title="Technik 2" WF="16384" Ix="27"/>
+				<C Type="IconCat" V="145" U="00000000-0000-001d-2000000000000000" Title="Tor 2" WF="16384" Ix="28"/>
+				<C Type="IconCat" V="145" U="00000000-0000-001e-2000000000000000" Title="EDV" WF="16384" Ix="29"/>
+				<C Type="IconCat" V="145" U="00000000-0000-001f-2000000000000000" Title="EDV 2" WF="16384" Ix="30"/>
+				<C Type="IconCat" V="145" U="00000000-0000-0020-2000000000000000" Title="Zutritt" WF="16384" Ix="31"/>
+				<C Type="IconCat" V="145" U="00000000-0000-0021-2000000000000000" Title="Zutritt 2" WF="16384" Ix="32"/>
+				<C Type="IconCat" V="145" U="00000000-0000-0022-2000000000000000" Title="Verbraucher" WF="16384" Ix="33"/>
+				<C Type="IconCat" V="145" U="00000000-0000-0023-2000000000000000" Title="Verbraucher 2" WF="16384" Ix="34"/>
+				<C Type="IconCat" V="145" U="00000000-0000-0024-2000000000000000" Title="Bewässerung" WF="16384" Ix="35"/>
+				<C Type="IconCat" V="145" U="00000000-0000-0025-2000000000000000" Title="Bewässerung 2" WF="16384" Ix="36"/>
+				<C Type="IconCat" V="145" U="00000000-0000-0026-2000000000000000" Title="Photovoltaik" WF="16384" Ix="37"/>
+				<C Type="IconCat" V="145" U="00000000-0000-0027-2000000000000000" Title="Überwachung" WF="16384" Ix="38"/>
+				<C Type="IconCat" V="145" U="00000000-0000-0028-2000000000000000" Title="Zutritt 3" WF="16384" Ix="39"/>
+				<C Type="IconCat" V="145" U="00000000-0000-0029-2000000000000000" Title="Zeit" WF="16384" Ix="40"/>
+				<C Type="IconCat" V="145" U="00000000-0000-002a-2000000000000000" Title="Elektrofahrzeug" WF="16384" Ix="41"/>
+				<C Type="IconCat" V="145" U="00000000-0000-002b-2000000000000000" Title="Sonne" WF="16384" Ix="42"/>
+				<C Type="IconCat" V="145" U="00000000-0000-002c-2000000000000000" Title="Wecker" WF="16384" Ix="43"/>
+				<C Type="IconCat" V="145" U="00000000-0000-002d-2000000000000000" Title="Strom" WF="16384" Ix="44"/>
+				<C Type="IconCat" V="145" U="00000000-0000-002e-2000000000000000" Title="Info" WF="16384" Ix="45"/>
+				<C Type="IconCat" V="145" U="00000000-0000-002f-2000000000000000" Title="Zirkulationspumpe" WF="16384" Ix="46"/>
+				<C Type="IconCat" V="145" U="00000000-0000-0030-2000000000000000" Title="Wärmepumpe" WF="16384" Ix="47"/>
+				<C Type="IconCat" V="145" U="00000000-0000-0031-2000000000000000" Title="Wetter" WF="16384" Ix="48"/>
+				<C Type="IconCat" V="145" U="00000000-0000-0032-2000000000000000" Title="Feuchte" WF="16384" Ix="49"/>
+				<C Type="IconCat" V="145" U="00000000-0000-0033-2000000000000000" Title="Multimedia" WF="16384" Ix="50"/>
+				<C Type="IconCat" V="145" U="00000000-0000-0034-2000000000000000" Title="Energie" WF="16384" Ix="51"/>
+				<C Type="IconCat" V="145" U="00000000-0000-0035-2000000000000000" Title="Einstellungen" WF="16384" Ix="52"/>
+				<C Type="IconCat" V="145" U="00000000-0000-0036-2000000000000000" Title="Nacht" WF="16384" Ix="53"/>
+				<C Type="IconCat" V="145" U="00000000-0000-0037-2000000000000000" Title="Party" WF="16384" Ix="54"/>
+				<C Type="IconCat" V="145" U="00000000-0000-0038-2000000000000000" Title="Tiefschlaf" WF="16384" Ix="55"/>
+				<C Type="IconCat" V="145" U="00000000-0000-0039-2000000000000000" Title="Abwesend" WF="16384" Ix="56"/>
+				<C Type="IconCat" V="145" U="00000000-0000-003a-2000000000000000" Title="Bedienelemente" WF="16384" Ix="57"/>
+				<C Type="IconCat" V="145" U="00000000-0000-003b-2000000000000000" Title="Sturmschutz" WF="16384" Ix="58"/>
+				<C Type="IconCat" V="145" U="00000000-0000-003c-2000000000000000" Title="Frostsicherung" WF="16384" Ix="59"/>
+			</C>
+			<C Type="IconCaptionPlace" V="145" U="16a73537-02d6-9e05-ffffe5ec67b53a4f" Title="Raumsymbole" WF="16384">
+				<C Type="IconPlace" V="145" U="00000000-0000-0001-2100000000000000" Title="Nicht zugeordnet" WF="16384"/>
+				<C Type="IconPlace" V="145" U="00000000-0000-0002-2100000000000000" Title="Vorzimmer EG" WF="16384" Ix="1"/>
+				<C Type="IconPlace" V="145" U="00000000-0000-0003-2100000000000000" Title="Vorzimmer OG" WF="16384" Ix="2"/>
+				<C Type="IconPlace" V="145" U="00000000-0000-0004-2100000000000000" Title="Wohnzimmer" WF="16384" Ix="3"/>
+				<C Type="IconPlace" V="145" U="00000000-0000-0005-2100000000000000" Title="Küche" WF="16384" Ix="4"/>
+				<C Type="IconPlace" V="145" U="00000000-0000-0006-2100000000000000" Title="Bad" WF="16384" Ix="5"/>
+				<C Type="IconPlace" V="145" U="00000000-0000-0007-2100000000000000" Title="Bad OG" WF="16384" Ix="6"/>
+				<C Type="IconPlace" V="145" U="00000000-0000-0008-2100000000000000" Title="Schlafzimmer" WF="16384" Ix="7"/>
+				<C Type="IconPlace" V="145" U="00000000-0000-0009-2100000000000000" Title="Kinderzimmer" WF="16384" Ix="8"/>
+				<C Type="IconPlace" V="145" U="00000000-0000-000a-2100000000000000" Title="WC" WF="16384" Ix="9"/>
+				<C Type="IconPlace" V="145" U="00000000-0000-000b-2100000000000000" Title="Ankleidezimmer" WF="16384" Ix="10"/>
+				<C Type="IconPlace" V="145" U="00000000-0000-000c-2100000000000000" Title="Garage" WF="16384" Ix="11"/>
+				<C Type="IconPlace" V="145" U="00000000-0000-000d-2100000000000000" Title="Windfang" WF="16384" Ix="12"/>
+				<C Type="IconPlace" V="145" U="00000000-0000-000e-2100000000000000" Title="Stiege" WF="16384" Ix="13"/>
+				<C Type="IconPlace" V="145" U="00000000-0000-000f-2100000000000000" Title="Saunaraum" WF="16384" Ix="14"/>
+				<C Type="IconPlace" V="145" U="00000000-0000-0010-2100000000000000" Title="Wintergarten" WF="16384" Ix="15"/>
+				<C Type="IconPlace" V="145" U="00000000-0000-0011-2100000000000000" Title="Arbeitszimmer" WF="16384" Ix="16"/>
+				<C Type="IconPlace" V="145" U="00000000-0000-0012-2100000000000000" Title="Spielzimmer" WF="16384" Ix="17"/>
+				<C Type="IconPlace" V="145" U="00000000-0000-0013-2100000000000000" Title="Waschzimmer" WF="16384" Ix="18"/>
+				<C Type="IconPlace" V="145" U="00000000-0000-0014-2100000000000000" Title="Bügelzimmer" WF="16384" Ix="19"/>
+				<C Type="IconPlace" V="145" U="00000000-0000-0015-2100000000000000" Title="Trainingszimmer" WF="16384" Ix="20"/>
+				<C Type="IconPlace" V="145" U="00000000-0000-0016-2100000000000000" Title="Terrasse" WF="16384" Ix="21"/>
+				<C Type="IconPlace" V="145" U="00000000-0000-0017-2100000000000000" Title="Garten" WF="16384" Ix="22"/>
+				<C Type="IconPlace" V="145" U="00000000-0000-0018-2100000000000000" Title="Esszimmer" WF="16384" Ix="23"/>
+				<C Type="IconPlace" V="145" U="00000000-0000-0019-2100000000000000" Title="Dachboden" WF="16384" Ix="24"/>
+				<C Type="IconPlace" V="145" U="00000000-0000-001a-2100000000000000" Title="Vorratskeller" WF="16384" Ix="25"/>
+				<C Type="IconPlace" V="145" U="00000000-0000-001b-2100000000000000" Title="Bar" WF="16384" Ix="26"/>
+				<C Type="IconPlace" V="145" U="00000000-0000-001c-2100000000000000" Title="Bad EG 2" WF="16384" Ix="27"/>
+				<C Type="IconPlace" V="145" U="00000000-0000-001d-2100000000000000" Title="Ankleidezimmer 2" WF="16384" Ix="28"/>
+				<C Type="IconPlace" V="145" U="00000000-0000-001e-2100000000000000" Title="Bad EG 3" WF="16384" Ix="29"/>
+				<C Type="IconPlace" V="145" U="00000000-0000-001f-2100000000000000" Title="Bad EG 4" WF="16384" Ix="30"/>
+				<C Type="IconPlace" V="145" U="00000000-0000-0020-2100000000000000" Title="Küche 2" WF="16384" Ix="31"/>
+				<C Type="IconPlace" V="145" U="00000000-0000-0021-2100000000000000" Title="Küche 3" WF="16384" Ix="32"/>
+				<C Type="IconPlace" V="145" U="00000000-0000-0022-2100000000000000" Title="Windfang 2" WF="16384" Ix="33"/>
+				<C Type="IconPlace" V="145" U="00000000-0000-0023-2100000000000000" Title="Sanitär" WF="16384" Ix="34"/>
+				<C Type="IconPlace" V="145" U="00000000-0000-0024-2100000000000000" Title="Arbeitszimmer 2" WF="16384" Ix="35"/>
+				<C Type="IconPlace" V="145" U="00000000-0000-0025-2100000000000000" Title="Esszimmer 2" WF="16384" Ix="36"/>
+				<C Type="IconPlace" V="145" U="00000000-0000-0026-2100000000000000" Title="Konferenz" WF="16384" Ix="37"/>
+				<C Type="IconPlace" V="145" U="00000000-0000-0027-2100000000000000" Title="Garage 2" WF="16384" Ix="38"/>
+				<C Type="IconPlace" V="145" U="00000000-0000-0028-2100000000000000" Title="Wintergarten 2" WF="16384" Ix="39"/>
+				<C Type="IconPlace" V="145" U="00000000-0000-0029-2100000000000000" Title="Stiege 2" WF="16384" Ix="40"/>
+				<C Type="IconPlace" V="145" U="00000000-0000-002a-2100000000000000" Title="Terrasse 2" WF="16384" Ix="41"/>
+				<C Type="IconPlace" V="145" U="00000000-0000-002b-2100000000000000" Title="Pool" WF="16384" Ix="42"/>
+				<C Type="IconPlace" V="145" U="00000000-0000-002c-2100000000000000" Title="Flur" WF="16384" Ix="43"/>
+				<C Type="IconPlace" V="145" U="00000000-0000-002d-2100000000000000" Title="Außenbereich" WF="16384" Ix="44"/>
+				<C Type="IconPlace" V="145" U="00000000-0000-002e-2100000000000000" Title="Technikraum" WF="16384" Ix="45"/>
+				<C Type="IconPlace" V="145" U="00000000-0000-002f-2100000000000000" Title="Arbeitszimmer 3" WF="16384" Ix="46"/>
+				<C Type="IconPlace" V="145" U="00000000-0000-0030-2100000000000000" Title="Technikraum 2" WF="16384" Ix="47"/>
+				<C Type="IconPlace" V="145" U="00000000-0000-0031-2100000000000000" Title="Zentral" WF="16384" Ix="48"/>
+				<C Type="IconPlace" V="145" U="00000000-0000-0032-2100000000000000" Title="Serverraum" WF="16384" Ix="49"/>
+				<C Type="IconPlace" V="145" U="00000000-0000-0033-2100000000000000" Title="Heizraum" WF="16384" Ix="50"/>
+				<C Type="IconPlace" V="145" U="00000000-0000-0034-2100000000000000" Title="WC 2" WF="16384" Ix="51"/>
+>>>>>>> Stashed changes
 			</C>
 		</C>
 		<C Type="CategoryCaption" V="141" U="16a73537-02d7-9e07-ffffe5ec67b53a4f" Title="Kategorien" WF="16384">
@@ -796,12 +944,16 @@
 						<IoData Cr="1697195c-02e7-2fb9-ffff7a256abb9706" Pr="169718d4-00ae-82cd-ffff7a256abb9706" St="2"/>
 						<Display Type="2" Unit="&lt;v&gt;" StateOnly="true"/>
 					</C>
+<<<<<<< Updated upstream
 					<C Type="VirtualOutCmd" IName="VQC1" V="141" U="16ad6466-0176-ef98-ffff7a256abb9706" Title="SureFlap-Testkatze2-SetPetLocation" Nio="1" WF="16400" CmdOn="/plugins/sureflap/setPetLocation.php?petname=Testkatze&amp;locationLox=&lt;v&gt;&amp;viname=SureFlap" SourceValHigh="10" DestValHigh="10" Tx="false">
+=======
+					<C Type="VirtualOutCmd" IName="VQC1" V="145" U="16ad6466-0176-ef98-ffff7a256abb9706" Title="SureFlap-Testkatze1-SetPetLocking" Nio="1" WF="16400" Analog="true" CmdOn="/plugins/sureflap/setPetLocking.php?petname=Testkatze1&amp;lockingLox=&lt;v&gt;&amp;viname=SureFlap" SourceValHigh="10" DestValHigh="10" Tx="false">
+>>>>>>> Stashed changes
 						<Co K="I" Nc="1" U="16ad6466-0176-ef97-ffff4c2221902d05">
 							<In Input="16ad648b-031f-0fd5-ffffb5c3423c9b85"/>
 						</Co>
 						<IoData Cr="16a73537-0317-9e8d-ffffe5ec67b53a4f" Pr="169718d4-00ae-82cd-ffff7a256abb9706" St="2"/>
-						<Display Unit="&lt;v.1&gt;" StateOnly="true"/>
+						<Display Type="2" Unit="&lt;v.1&gt;" StateOnly="true"/>
 					</C>
 					<C Type="VirtualOutCmd" IName="VQC15" V="141" U="16affff1-0297-a461-ffff7a256abb9706" Title="SureFlap-SetHubLedBrightness" Nio="1" WF="16400" Analog="true" CmdOn="/plugins/sureflap/setHubLedBrightness.php?modeLox=&lt;v&gt;&amp;viname=SureFlap" SourceValHigh="10" DestValHigh="10" Tx="false">
 						<Co K="I" Nc="1" U="16affff1-0297-a460-ffff161c0f9690e1">
@@ -1697,6 +1849,63 @@ In diesem Fall muss auch im Teil hinter &quot;SureFlap&quot; der Bindestrich ers
 					<Co K="AQ" U="16b00968-0088-bbed-ffffe1a9b74c7e89"/>
 					<LoggerMailer RefNotification="16ad8407-0004-804e-ffff7a256abb9706" On="Batteriewechsel notwendig -&gt; unter 25%" MinimumTime="43200000" NL="1"/>
 				</C>
+<<<<<<< Updated upstream
+=======
+				<C Type="OutputRef" V="145" U="16a737ee-0264-b437-ffff7a256abb9706" Title="Immer" Px="12288" Py="5568" Px2="14400" Py2="5760" Cl="238,238,238" Nio="2" Ref="16a737d1-0105-aa13-ffffe5ec67b53a4f" WF="16384" LinkRefType="21">
+					<Co K="AI" Nc="1" U="16a737ee-0264-b435-ffff8ee3b5004b90">
+						<In Input="16a73835-0219-e067-ffff464a95e0e7ce"/>
+					</Co>
+					<Co K="AQ" U="16a737ee-0264-b436-ffff8ee3b5004b90"/>
+				</C>
+				<C Type="OutputRef" V="145" U="169b07d7-016e-c4ce-ffff7a256abb9706" Title="SureFlap-Testkatze1-SetPetLocation" Px="8448" Py="12768" Px2="10560" Py2="12960" Cl="238,238,238" Nio="2" Ref="169b07c0-02fa-ecf2-ffff7a256abb9706" RefL="169b07c0-02fa-ecf2-ffff7a256abb9706" Ref2="169b07c0-02fa-ecf2-ffff7a256abb9706" WF="147456" Analog="true" LinkRefType="74">
+					<Co K="AI" Nc="1" U="169b07d7-016e-c4cc-ffff096c4c3cadcb">
+						<In Input="169b083b-00af-d420-ffffaef017ca6fb6"/>
+					</Co>
+					<Co K="AQ" U="169b07d7-016e-c4cd-ffff096c4c3cadcb"/>
+				</C>
+				<C Type="InputRef" V="145" U="16ee634a-03a8-e59b-ffff7a256abb9706" Title="SureFlap-Katzenklappe-DeviceSignal" Px="1728" Py="9312" Px2="3840" Py2="9504" Cl="238,238,238" Nio="4" Ref="16971af1-0079-21d6-ffff7a256abb9706" WF="131072" Analog="true" LinkRefType="71">
+					<Co K="AI" Nc="1" U="16ee634a-03a8-e597-ffff015bf1329082">
+						<In Input="16971af1-0079-21d5-ffffc2c4ab226809"/>
+					</Co>
+					<Co K="I" Nc="1" U="16ee634a-03a8-e598-ffff015bf1329082">
+						<In Input="169ac0fe-036d-eae9-ffff5d7ffa57841d"/>
+					</Co>
+					<Co K="AQ" U="16ee634a-03a8-e599-ffff015bf1329082"/>
+					<Co K="Q" U="16ee634a-03a8-e59a-ffff015bf1329082"/>
+				</C>
+				<C Type="InputRef" V="145" U="16ee635b-02f3-f1e1-ffff7a256abb9706" Title="SureFlap-Katzenklappe-DeviceSignalHub" Px="1728" Py="9504" Px2="3840" Py2="9696" Cl="238,238,238" Nio="4" Ref="16971af2-03e3-f7e9-ffff7a256abb9706" WF="131072" Analog="true" LinkRefType="71">
+					<Co K="AI" Nc="1" U="16ee635b-02f3-f1dd-ffff16a9ebe5aa6e">
+						<In Input="16971af2-03e3-f7e8-ffffa47d6c1dbb3f"/>
+					</Co>
+					<Co K="I" Nc="1" U="16ee635b-02f3-f1de-ffff16a9ebe5aa6e">
+						<In Input="169ac0fe-036d-eaef-ffff5d7ffa57841d"/>
+					</Co>
+					<Co K="AQ" U="16ee635b-02f3-f1df-ffff16a9ebe5aa6e"/>
+					<Co K="Q" U="16ee635b-02f3-f1e0-ffff16a9ebe5aa6e"/>
+				</C>
+				<C Type="InputRef" V="145" U="16ee6393-03c3-0a8c-ffff7a256abb9706" Title="SureFlap-Testkatze1-PetLockingLox" Px="1728" Py="11424" Px2="3840" Py2="11616" Cl="238,238,238" Nio="4" Ref="1697ae3b-02d2-2134-ffff7a256abb9706" WF="131072" Text="true" LinkRefType="83">
+					<Co K="AI" Nc="1" U="16ee6393-03c3-0a88-ffff0fab8039d362">
+						<In Input="1697ae3b-02d2-2133-ffffba7c67043dd4"/>
+					</Co>
+					<Co K="I" U="16ee6393-03c3-0a89-ffff0fab8039d362"/>
+					<Co K="AQ" U="16ee6393-03c3-0a8a-ffff0fab8039d362"/>
+					<Co K="Q" U="16ee6393-03c3-0a8b-ffff0fab8039d362"/>
+				</C>
+				<C Type="InputRef" V="145" U="16ee6398-032e-12dc-ffff7a256abb9706" Title="SureFlap-Testkatze1-PetLockingLox" Px="1728" Py="14112" Px2="3840" Py2="14304" Cl="238,238,238" Nio="4" Ref="1697ae3b-02d2-2134-ffff7a256abb9706" WF="131072" Text="true" LinkRefType="83">
+					<Co K="AI" Nc="1" U="16ee6398-032e-12d8-fffff48e60373e2f">
+						<In Input="1697ae3b-02d2-2133-ffffba7c67043dd4"/>
+					</Co>
+					<Co K="I" U="16ee6398-032e-12d9-fffff48e60373e2f"/>
+					<Co K="AQ" U="16ee6398-032e-12da-fffff48e60373e2f"/>
+					<Co K="Q" U="16ee6398-032e-12db-fffff48e60373e2f"/>
+				</C>
+				<C Type="OutputRef" V="145" U="16ee63d1-03cb-3435-ffff7a256abb9706" Title="SureFlap-Testkatze1-SetPetLocking" Px="8448" Py="14112" Px2="10560" Py2="14304" Cl="238,238,238" Nio="2" Ref="16ad6466-0176-ef98-ffff7a256abb9706" WF="147456" Analog="true" LinkRefType="74">
+					<Co K="AI" Nc="1" U="16ee63d1-03cb-3433-ffff0e3690fe7052">
+						<In Input="16ee624b-03a0-51a7-ffff66afb7a2cacb"/>
+					</Co>
+					<Co K="AQ" U="16ee63d1-03cb-3434-ffff0e3690fe7052"/>
+				</C>
+>>>>>>> Stashed changes
 			</C>
 		</C>
 	</C>

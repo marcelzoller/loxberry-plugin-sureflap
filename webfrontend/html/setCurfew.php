@@ -39,7 +39,7 @@ $params = [
 ];
 $log = LBLog::newLog ($params);
 
-LOGSTART("SureFlap HTTP setEnableCurfew.php started");
+LOGSTART("SureFlap HTTP setCurfew.php started");
 if($input_enable) {
 	LOGDEB("SetCurfew: ".$input_from."-".$input_to);
 	print "SetCurfew: ".$input_from."-".$input_to."<br>";
@@ -117,5 +117,5 @@ if($config_http_send == 1) {
 	include_once 'includes/sendResponces.php';
 }
 
-LOGEND("SureFlap HTTP setEnableCurfew.php stopped");/* */
+LOGEND("SureFlap HTTP setCurfew.php stopped");/* */
 ?>
