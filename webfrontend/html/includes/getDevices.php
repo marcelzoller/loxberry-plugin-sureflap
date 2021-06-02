@@ -121,18 +121,32 @@ if($devices) {
 				// Curfew-Status
 				$device_curfew = $device['control']['curfew'];
 				unset($curfew_string);
+				$curfew_activ = 0;
 				foreach($device_curfew AS $curfew) {
 					if($curfew['enabled'] == true) {
+						$curfew_overlap = false;
 						if(!empty($curfew_string)) { 
 							$curfew_string = $curfew_string.","; 
 						}
 						$curfew_string = $curfew_string.$curfew['lock_time']."-".$curfew['unlock_time'];
+						// Is curfew activ?
+						$curfew_from = strtotime($curfew['lock_time']);
+						$curfew_to   = strtotime($curfew['unlock_time']);
+						if($curfew_to < $curfew_from) {
+							$curfew_overlap = true;
+						}
+						if(time() >= $curfew_from and ($curfew_overlap or time() < $curfew_to)) {
+							$curfew_activ = 1;
+						} elseif($curfew_overlap and time() < $curfew_to) {
+							$curfew_activ = 1;
+						}						
 					}
 				}
 				if(empty($curfew_string)) { 
 					$curfew_string = "-"; 
 				}
 				print $multi."DeviceCurfew@".$curfew_string."<br>";
+				print $multi."DeviceCurfewState@".$curfew_activ."<br>";
 				// Pet-Locking
 				$device_pet_locking = $device['tags'];
 			}
