@@ -10,9 +10,9 @@ $cfg = new Config_Lite("$lbpconfigdir/pluginconfig.cfg");
 
 // logindata
 $config_email_address = $cfg['MAIN']['EMAIL'];
-$config_password = $cfg['MAIN']['PASSWORD'];
-$config_miniserver = $cfg['MAIN']['MINISERVER'];
-$config_http_send = $cfg['MAIN']['HTTPSEND'];
+$config_password      = $cfg['MAIN']['PASSWORD'];
+$config_miniserver    = $cfg['MAIN']['MINISERVER'];
+$config_http_send     = $cfg['MAIN']['HTTPSEND'];
 
 $endpoint = "https://app.api.surehub.io";
 
@@ -20,8 +20,9 @@ $endpoint = "https://app.api.surehub.io";
 $found = false;
 if($config_http_send == 1) {
 	$miniservers = LBSystem::get_miniservers();
-	foreach ($miniservers as $miniserver) {	
+	foreach ($miniservers as $index => $miniserver) {	
 		if($miniserver['Name'] == $config_miniserver) {
+			$miniserver_no = $index;
 			if($miniserver['PreferHttps'] == 1) {
 				LOGDEB("sending encrypted in https-Mode");
 				$response_endpoint = "https://";
@@ -43,6 +44,9 @@ $config_device_id = (string) rand(1000000000,1999999999);
 
 // get last token
 LOGDEB("Getting last token");
-$token = file_get_contents("$lbpdatadir/token.dat");
+$token = "";
+if(file_exists("$lbpdatadir/token.dat")) {
+	$token = file_get_contents("$lbpdatadir/token.dat");
+}
 
 ?>

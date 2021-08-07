@@ -8,27 +8,32 @@ $params = [
 ];
 $log = LBLog::newLog ($params);
 
+// print request moment
+print "System@DateTime@".date('d.m.Y H:i:s')."<br>";
+print "System@DateTimeLox@".epoch2lox(time())."<br><br>";
+
 // called from other modul?
 ob_start();
-if($background) {	
-	LOGINF("Getting data from getData.php...");
-} else {
+if(empty($background)) {	
 	LOGSTART("SureFlap HTTP getData.php started");
+} else {
+	LOGINF("Getting data from getData.php...");
 }
 
 // load config
+include_once 'includes/checkUpdate.php';
 include_once 'includes/config.php';
 include_once 'includes/curl.php';
 
 // send request
-if($token) {
+if(isset($token)) {
 	LOGDEB("Starting request...");
 	$curl = get_curl($endpoint."/api/me/start", $token);
 	LOGDEB("Request received with code: ".$curl['http_code']);
 }
 
 // get new token?
-if($curl['http_code'] != "200") {
+if(!isset($token) or $curl['http_code'] != "200") {
 	LOGWARN("Token needs to be renewed!");
 	// getting new token
 	include_once 'includes/login.php';
@@ -36,12 +41,8 @@ if($curl['http_code'] != "200") {
 	// resend request
 	LOGDEB("Restarting request...");
 	$curl = get_curl($endpoint."/api/me/start", $token);
-	LOGDEB("Re-Request received with code: ".curl['http_code']);
+	LOGDEB("Re-Request received with code: ".$curl['http_code']);
 }
-
-// print request moment
-print "System@DateTime@".date('d.m.Y H:i:s')."<br>";
-print "System@DateTimeLox@".epoch2lox(time())."<br><br>";
 
 // getting household
 LOGDEB("Getting households...");
@@ -64,18 +65,19 @@ LOGDEB("Getting pets...");
 $pets = $curl['result']['data']['pets'];
 include 'includes/getPets.php';
 
-if($background) {
-	// do not print data in background
-	ob_end_clean();
-	LOGINF("Returning from getData.php...");
-} else {	
+if(empty($background)) {
+	// print data
+	ob_end_flush();	
 	// Responce to virutal input?
 	if($config_http_send == 1) {
 		LOGDEB("Starting Response to miniserver...");
 		include_once 'includes/sendResponces.php';
 	} 
-	// print data
-	ob_end_flush();
 	LOGEND("SureFlap HTTP getData.php stopped");	
+} else {
+	// do not print data in background
+	ob_end_clean();
+	LOGINF("Returning from getData.php...");	
 }
+
 ?>

@@ -4,7 +4,7 @@ function init_curl($endpoint) {
 	$ch = curl_init($endpoint);
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);	
 	curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 0); 
-	curl_setopt($ch, CURLOPT_TIMEOUT, 10); //timeout in seconds
+	curl_setopt($ch, CURLOPT_TIMEOUT, 30); //timeout in seconds
 	return $ch;
 }
 
@@ -41,7 +41,11 @@ function put_curl($endpoint, $token, $json) {
 
 function post_curl($endpoint, $token, $json) {
 	$ch = init_curl($endpoint);
-	curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type: application/json","Content-Length: ".strlen($json),"Authorization: Bearer $token"));
+	if(empty($token)) {
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type: application/json","Content-Length: ".strlen($json)));
+	} else {
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type: application/json","Content-Length: ".strlen($json),"Authorization: Bearer $token"));
+	}
 	curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
 	curl_setopt($ch, CURLOPT_POSTFIELDS, $json);	
 	return start_curl($ch);

@@ -1,18 +1,20 @@
 <?php
 if($households) {	
-	if($_GET['householdname']) {
+	if(isset($_GET['householdname'])) {
 		LOGDEB("Parameter: householdname=\"".$_GET['householdname']."\"");
 	}
 	
 	$found = false;
-	foreach($households AS $household) {	
+	foreach($households AS $index => $household) {	
 		$multi = $household['name']."@";
 		
-		if($household['name'] == $_GET['householdname'] or empty($_GET['householdname'])){
+		if(!isset($_GET['householdname']) or $household['name'] == $_GET['householdname']){
 			$found = true;
+			$householdindex = $index;
 			// ID
-			print $multi."HouseholdID@".$household['id']."<br>";
-			LOGINF("HouseholdID@".$household['id']);
+			$householdid = $household['id'];
+			print $multi."HouseholdID@".$householdid."<br>";
+			LOGINF("HouseholdID@".$householdid);
 			// Name
 			print $multi."HouseholdName@".$household['name']."<br>";
 			print "<br>";

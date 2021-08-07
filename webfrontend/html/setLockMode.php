@@ -7,7 +7,7 @@ if(isset($_GET['modeLox'])) {
 }
 
 // check inputs
-$lock_mode = $_GET['mode'].$_GET['modeid'];
+$lock_mode = @$_GET['mode'].@$_GET['modeid'];
 switch($lock_mode) {	
 	case "1":
 	case "none":
@@ -44,7 +44,7 @@ LOGSTART("SureFlap HTTP setLockMode.php started");
 LOGDEB("LockMode: ".$lock_str);
 
 // get new data - no output
-$background = true;
+$background = "setLockMode_".$lock_str;
 include 'getData.php';
 
 if($device_lock_id == $lock) {
@@ -61,7 +61,7 @@ if($device_lock_id == $lock) {
 		LOGINF("Successfully set lockmode for \"$flapname\" to \"$lock_str\"");
 		
 		// Build data to responce
-		$devices = array(array("id" => $flap, "name" => $flapname, "product_id" => $flaptype, "control" => $curl['result']['data']));		
+		$devices[$flapindex]['control'] = $curl['result']['data'];
 	} else {
 		print "Lockmode change failed!";
 		LOGERR("Lockmode change failed!");
@@ -71,7 +71,7 @@ if($device_lock_id == $lock) {
 if($config_http_send == 1) {
 	print "<br><br>";
 	// Only send changed values
-	$_GET['viparam'] = "DeviceLockMode;DeviceLockModeLox;DeviceLockModeDesc";
+	$_GET['viparam'] = "DateTime;DateTimeLox;DeviceLockMode;DeviceLockModeLox;DeviceLockModeDesc";
 	// Convert value
 	include 'includes/getDevices.php';
 	// Responce to virutal input

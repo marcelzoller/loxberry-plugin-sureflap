@@ -1,14 +1,14 @@
 <?php
 if($devices) {	
-	if($_GET['devicename']) {
+	if(isset($_GET['devicename'])) {
 		LOGDEB("Parameter: devicename=\"".$_GET['devicename']."\"");
 	}
 	
 	$found = false;
-	foreach($devices AS $device) {
+	foreach($devices AS $index => $device) {
 		$multi = $device['name']."@";
 		
-		if($device['name'] == $_GET['devicename'] OR empty($_GET['devicename'])) {
+		if(!isset($_GET['devicename']) or $device['name'] == $_GET['devicename']) {
 			$found = true;
 			// ID
 			print $multi."DeviceID@".$device['id']."<br>";			
@@ -18,6 +18,7 @@ if($devices) {
 			switch($device['product_id']) {
 				case 1:
 					$devicetype = "Hub";
+					$hubindex  = $index;
 					$hub     = $device['id'];
 					$hubname = $device['name'];
 					break;
@@ -26,7 +27,8 @@ if($devices) {
 					break;
 				case 3:
 					$devicetype = "Pet Door Connect";
-					$flap     = $device['id'];
+					$flapindex  = $index;
+					$flap     = $device['id'];					
 					$flapname = $device['name'];
 					$flaptype = $device['product_id'];
 					break;
@@ -38,6 +40,7 @@ if($devices) {
 					break;
 				case 6:
 					$devicetype = "DualScan Cat Flap Connect";
+					$flapindex  = $index;
 					$flap     = $device['id'];
 					$flapname = $device['name'];
 					$flaptype = $device['product_id'];
@@ -50,13 +53,13 @@ if($devices) {
 			// MAC
 			print $multi."DeviceMACAddress@".$device['mac_address']."<br>";
 			// Serial
-			if($device['serial_number']) {
+			if(isset($device['serial_number'])) {
 				print $multi."DeviceSerialNumber@".$device['serial_number']."<br>"; 
 			}
 			// Online
 			print $multi."DeviceOnline@".$device['status']['online']."<br>";
 			// Signal
-			if($device['status']['signal']) {
+			if(isset($device['status']['signal'])) {
 				print $multi."DeviceSignal@".round($device['status']['signal']['device_rssi'],1)." db<br>";
 				print $multi."DeviceSignalHub@".round($device['status']['signal']['hub_rssi'],1)." db<br>";
 			}
@@ -120,15 +123,15 @@ if($devices) {
 				print $multi."DeviceLockModeDesc@".$device_lock."<br>";
 				// Curfew-Status
 				$device_curfew = $device['control']['curfew'];
-				unset($curfew_string);
+				$curfew_string = "";
 				$curfew_activ = 0;
 				foreach($device_curfew AS $curfew) {
 					if($curfew['enabled'] == true) {
 						$curfew_overlap = false;
 						if(!empty($curfew_string)) { 
-							$curfew_string = $curfew_string.","; 
+							$curfew_string .= ","; 
 						}
-						$curfew_string = $curfew_string.$curfew['lock_time']."-".$curfew['unlock_time'];
+						$curfew_string .= $curfew['lock_time']."-".$curfew['unlock_time'];
 						// Is curfew activ?
 						$curfew_from = strtotime($curfew['lock_time']);
 						$curfew_to   = strtotime($curfew['unlock_time']);

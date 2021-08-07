@@ -1,15 +1,16 @@
 <?php
 if($pets) {
-	if($_GET['petname']) {
+	if(isset($_GET['petname'])) {
 		LOGDEB("Parameter: petname=\"".$_GET['petname']."\"");
 	}	
 	
 	$found = false;
-	foreach($pets AS $pet) {
+	foreach($pets AS $index => $pet) {
 		$multi = $pet['name']."@";
 		
-		if($pet['name'] == $_GET['petname'] OR empty($_GET['petname'])){
+		if(!isset($_GET['petname']) or $pet['name'] == $_GET['petname']){
 			$found = true;
+			$petindex = $index;
 			// ID
 			$petid = $pet['id'];
 			print $multi."PetID@".$petid."<br>";

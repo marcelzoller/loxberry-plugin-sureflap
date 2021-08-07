@@ -7,7 +7,7 @@ if(isset($_GET['name'])) {
 	$_GET['petname'] = $_GET['name'];
 	LOGWARN("Parameter name should no longer be used! Please use petname instead.");
 }
-if(empty($_GET['petname'])){
+if(!isset($_GET['petname'])){
 	die("Usage: ".$_SERVER['PHP_SELF']."?petname=[...]&location=[1|2] or [in|out]\n");
 }
 // better use with radiobutton
@@ -16,7 +16,7 @@ if(isset($_GET['locationLox'])) {
 }	
 
 // check parameter "location"
-$location_mode = $_GET['location'].$_GET['locationid'];
+$location_mode = @$_GET['location'].@$_GET['locationid'];
 switch($location_mode){
 	case "1":
 	case "in":
@@ -43,7 +43,7 @@ LOGSTART("SureFlap HTTP setPetLocation.php started");
 LOGDEB("setPetLocation: ".$location_str." for ".$_GET['petname']);
 
 // get new data - no output
-$background = true;
+$background = "setPetLocation_".$_GET['petname']."_".$location_str;
 include 'getData.php';
 
 // Check if pet match
@@ -71,7 +71,7 @@ if($curr_location_id == $location) {
 		LOGINF("Successfully set pet location for \"$petname\" to \"$location_str\"");
 		
 		// Build data to responce
-		$pets = array(array("id" => $petid, "name" => $petname, "position" => $curl['result']['data']));		
+		$pets[$petindex]['position'] = $curl['result']['data'];
 	} else {
 		print "Set Location Failed!";
 		LOGERR("Set Location Failed!");
@@ -81,7 +81,7 @@ if($curr_location_id == $location) {
 if($config_http_send == 1) {
 	print "<br><br>";
 	// Only send changed values
-	$_GET['viparam'] = "PetLocation;PetLocationLox;PetLocationDesc;PetLocationSince;PetLocationSinceLox";
+	$_GET['viparam'] = "DateTime;DateTimeLox;PetLocation;PetLocationLox;PetLocationDesc;PetLocationSince;PetLocationSinceLox";
 	// Convert value
 	include 'includes/getPets.php';
 	// Responce to virutal input

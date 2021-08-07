@@ -7,7 +7,7 @@ if(isset($_GET['modeLox'])) {
 }
 
 // check inputs
-$led_mode = $_GET['mode'].$_GET['modeid'];
+$led_mode = @$_GET['mode'].@$_GET['modeid'];
 switch($led_mode) {
 	case "1":
 	case "off":
@@ -39,7 +39,7 @@ LOGSTART("SureFlap HTTP setHubLedBrightness.php started");
 LOGDEB("SetHubLedMode:".$led_str);
 
 // get new data - no output
-$background = true;
+$background = "setHubLed_".$led_str;
 include 'getData.php';
 
 if($device_led_id == $led) {
@@ -56,7 +56,7 @@ if($device_led_id == $led) {
 		LOGINF("Successfully set LED mode for \"$hubname\" to \"$led_str\"");
 
 		// Build data to responce
-		$devices = array(array("id" => $hub, "name" => $hubname, "product_id" => 1, "control" => $curl['result']['data']));		
+		$devices[$hubindex]['control'] = $curl['result']['data'];	
 	} else {
 		print "LED Brightness Change Failed!";
 		LOGERR("LED Brightness Change Failed!");
@@ -66,7 +66,7 @@ if($device_led_id == $led) {
 if($config_http_send == 1) {
 	print "<br><br>";
 	// Only send changed values
-	$_GET['viparam'] = "DeviceLedMode;DeviceLedModeLox;DeviceLedModeDesc";
+	$_GET['viparam'] = "DateTime;DateTimeLox;DeviceLedMode;DeviceLedModeLox;DeviceLedModeDesc";
 	// Convert value
 	include 'includes/getDevices.php';
 	// Responce to virutal input

@@ -8,7 +8,7 @@ function isTime($time) {
 }
 
 // check mode
-$input_mode = $_GET['mode'].$_GET['modeid'];
+$input_mode = @$_GET['mode'].@$_GET['modeid'];
 switch($input_mode) {	
 	case "0":
 	case "off":
@@ -24,7 +24,7 @@ switch($input_mode) {
 
 // check correct time format
 if($input_enable) {
-	if(isTime($_GET['from']) and isTime($_GET['to'])) {
+	if(isTime(@$_GET['from']) and isTime(@$_GET['to'])) {
 		$input_from = date("H:i", strtotime($_GET['from']));
 		$input_to   = date("H:i", strtotime($_GET['to']));
 	} else {
@@ -49,7 +49,7 @@ if($input_enable) {
 }
 
 // get new data - no output
-$background = true;
+$background = "setCurfew";
 include_once 'getData.php';
 
 // check if already there
@@ -98,7 +98,7 @@ if($found == false) {
 		}
 		
 		// Build data to responce
-		$devices = array(array("id" => $flap, "name" => $flapname, "product_id" => $flaptype, "control" => $curl['result']['data']));			
+		$devices[$flapindex]['control'] = $curl['result']['data'];				
 	} else {	
 		print "Enable Curfew Failed!";
 		LOGERR("Enable Curfew Failed!");
@@ -109,7 +109,7 @@ if($found == false) {
 if($config_http_send == 1) {
 	print "<br><br>";
 	// Only send changed values
-	$_GET['viparam'] = "DeviceCurfew";
+	$_GET['viparam'] = "DateTime;DateTimeLox;DeviceCurfew";
 	// Convert value	
 	include 'includes/getDevices.php';
 	// Responce to virutal input

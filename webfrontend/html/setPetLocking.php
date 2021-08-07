@@ -7,7 +7,7 @@ if(isset($_GET['name'])) {
 	$_GET['petname'] = $_GET['name'];
 	LOGWARN("Parameter name should no longer be used! Please use petname instead.");
 }
-if(empty($_GET['petname'])){
+if(!isset($_GET['petname'])){
 	die("Usage: ".$_SERVER['PHP_SELF']."?petname=[...]&locking=[2|3] or [out|in]\n");
 }
 // better use with radiobutton
@@ -16,7 +16,7 @@ if(isset($_GET['lockingLox'])) {
 }	
 
 // check parameter "locking"
-$locking_mode = $_GET['locking'].$_GET['lockingid'];
+$locking_mode = @$_GET['locking'].@$_GET['lockingid'];
 switch($locking_mode){
 	case "2":
 	case "in":
@@ -43,7 +43,7 @@ LOGSTART("SureFlap HTTP setPetLocking.php started");
 LOGDEB("setPetLocking: ".$locking_str." for ".$_GET['petname']);
 
 // get new data - no output
-$background = true;
+$background = "setPetLocking_".$_GET['petname']."_".$locking_str;
 include 'getData.php';
 
 // Check if pet match
@@ -76,7 +76,7 @@ if($curr_pet_locking['profile'] == $locking) {
 if($config_http_send == 1) {
 	print "<br><br>";
 	// Only send changed values
-	$_GET['viparam'] = "PetLocking;PetLockingLox;PetLockingDesc";
+	$_GET['viparam'] = "DateTime;DateTimeLox;PetLocking;PetLockingLox;PetLockingDesc";
 	// Convert value	
 	include 'includes/getPets.php';
 	// Responce to virutal input
