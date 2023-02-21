@@ -106,7 +106,7 @@ if($found == false) {
 }
 
 
-if($config_http_send == 1) {
+if($config_send) {
 	print "<br><br>";
 	// Only send changed values
 	$_GET['viparam'] = "DateTime;DateTimeLox;DeviceCurfew";

@@ -20,10 +20,11 @@ if(empty($background)) {
 	LOGINF("Getting data from getData.php...");
 }
 
-// load config
+// check last run - only allow 10 seconds interval
 include_once 'includes/checkUpdate.php';
+
+// load config
 include_once 'includes/config.php';
-include_once 'includes/curl.php';
 
 // send request
 if(isset($token)) {
@@ -69,7 +70,7 @@ if(empty($background)) {
 	// print data
 	ob_end_flush();	
 	// Responce to virutal input?
-	if($config_http_send == 1) {
+	if($config_send) {
 		LOGDEB("Starting Response to miniserver...");
 		include_once 'includes/sendResponces.php';
 	} 

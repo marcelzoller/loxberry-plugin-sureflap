@@ -1,6 +1,7 @@
 <?php
 require_once "Config/Lite.php";
 require_once "loxberry_system.php";
+require_once "loxberry_io.php";
 
 // save timezone
 $server_timezone = date_default_timezone_get();
@@ -9,16 +10,19 @@ $server_timezone = date_default_timezone_get();
 $cfg = new Config_Lite("$lbpconfigdir/pluginconfig.cfg");
 
 // logindata
-$config_email_address = $cfg['MAIN']['EMAIL'];
-$config_password      = $cfg['MAIN']['PASSWORD'];
-$config_miniserver    = $cfg['MAIN']['MINISERVER'];
-$config_http_send     = $cfg['MAIN']['HTTPSEND'];
+$config_email_address = @$cfg['MAIN']['EMAIL'];
+$config_password      = @$cfg['MAIN']['PASSWORD'];
+$config_miniserver    = @$cfg['MAIN']['MINISERVER'];
+$config_http_send     = @$cfg['MAIN']['HTTPSEND'];
+$config_mqtt_send     = @$cfg['MAIN']['MQTTSEND'];
+$config_mqtt_topic    = @$cfg['MAIN']['MQTT_TOPIC'];
 
 $endpoint = "https://app.api.surehub.io";
+$config_send = false;
 
 // send http?
-$found = false;
-if($config_http_send == 1) {
+$http_activ = false;
+if( ($config_http_send == 1) && isset($_GET['viname']) ) {
 	$miniservers = LBSystem::get_miniservers();
 	foreach ($miniservers as $index => $miniserver) {	
 		if($miniserver['Name'] == $config_miniserver) {
@@ -34,8 +38,18 @@ if($config_http_send == 1) {
 			}
 			$response_endpoint = $response_endpoint.$miniserver['Credentials']."@".
 								 $miniserver['IPAddress'].":".$miniserver_port."/dev/sps/io/";
+			$http_activ = $config_send = true;
 			break;
 		}		
+	}
+}
+
+// send mqtt?
+$mqtt_activ = false;
+if($config_mqtt_send == 1 && isset($config_mqtt_topic)) {
+	$mqtt = mqtt_connect();
+	if(isset($mqtt)) {
+		$mqtt_activ = $config_send = true;
 	}
 }
 

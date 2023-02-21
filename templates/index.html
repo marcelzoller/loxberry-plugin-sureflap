@@ -36,7 +36,31 @@
 						</table>
 					</td>
 				</tr>
-				<tr><td>&nbsp;</td></tr>		
+				<tr><td>&nbsp;</td></tr>
+				<tr>
+					<td width="200">
+						<label id="labelmsenabled"><b><TMPL_VAR BASIC.SUREFLAP_MQTT></b></label>
+					</td>
+					<td colspan=2">
+						<select name="MQTTSEND" data-role="flipswitch">
+							<option <TMPL_VAR NAME=MQTTSENDNO> value="0"><TMPL_VAR BASIC.SUREFLAP_MQTT_OFF></option>
+							<option <TMPL_VAR NAME=MQTTSENDYES> value="1"><TMPL_VAR BASIC.SUREFLAP_MQTT_ON></option>
+						</select>
+						<font size="-1"><TMPL_VAR BASIC.SUREFLAP_HMQTT></font>
+					</td>
+				</tr>
+				<tr>				
+					<td width="200">
+						&nbsp;
+					</td>
+					<td colspan=2>
+						<input name="MQTT_TOPIC" type="text" class="textfield"
+							value="<TMPL_VAR NAME=MQTT_TOPIC>" placeholder="<TMPL_VAR BASIC.SUREFLAP_TOPIC>"/>
+						&shy;
+						<font size="-1"><TMPL_VAR BASIC.SUREFLAP_HTOPIC></font>
+					</td>
+				</tr>
+				<tr><td>&nbsp;</td></tr>
 				<tr>
 					<td width="200">
 						<label id="labelmsenabled"><b><TMPL_VAR BASIC.SUREFLAP_HTML></b></label>

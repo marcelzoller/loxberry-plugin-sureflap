@@ -43,10 +43,12 @@ if($pets) {
 			}
 			// Location
 			$curr_location_id = $pet['position']['where'];
-			if($curr_location_id == 1) {
+			if ($curr_location_id == 1) {
 				$curr_location = "Inside";
-			} else {
+			} elseif($curr_location_id == 2) {
 				$curr_location = "Outside";
+			} else {
+				$curr_location = "Unknown";
 			}
 			print $multi."PetLocation@".$curr_location_id."<br>";
 			$curr_location_lox = $curr_location_id - 1;
