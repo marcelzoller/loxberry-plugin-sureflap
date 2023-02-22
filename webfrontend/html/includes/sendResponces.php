@@ -43,14 +43,22 @@ foreach($contents AS $content) {
 	}
 }
 
-// send mqtt data
-foreach($mqtt_values AS $mqtt_sub => $mqtt_value) {
-	// build a topic
-	$mqtt_topic = $config_mqtt_topic."/".$mqtt_sub;
-	// encode the data to json
-	$mqtt_json_value = json_encode($mqtt_value);	
-	// publish json data
-	LOGDEB("Publish: \"$mqtt_topic\" value \"$mqtt_json_value\"");
-	$mqtt->publish( $mqtt_topic, $mqtt_json_value );
+if($mqtt_activ == true) {
+	// Connect to the MQTT-brocker -> use phpMQTT to minimize loxberry version to 2.0
+	require_once "phpMQTT/phpMQTT.php";
+	$mqtt = new Bluerhinos\phpMQTT($mqttcreds['brokerhost'], $mqttcreds['brokerport'],$mqttcreds['client_id']);
+	if( $mqtt->connect(true, NULL, $mqttcreds['brokeruser'], $mqttcreds['brokerpass'] ) ) {
+		// send mqtt data
+		foreach($mqtt_values AS $mqtt_sub => $mqtt_value) {
+			// build a topic
+			$mqtt_topic = $config_mqtt_topic."/".$mqtt_sub;
+			// encode the data to json
+			$mqtt_json_value = json_encode($mqtt_value);	
+			// publish json data
+			LOGDEB("Publish: \"$mqtt_topic\" value \"$mqtt_json_value\"");
+			$mqtt->publish( $mqtt_topic, $mqtt_json_value );
+		}
+		$mqtt->close();
+	}
 }
 ?>

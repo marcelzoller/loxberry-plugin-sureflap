@@ -47,9 +47,11 @@ if( ($config_http_send == 1) && isset($_GET['viname']) ) {
 // send mqtt?
 $mqtt_activ = false;
 if($config_mqtt_send == 1 && isset($config_mqtt_topic)) {
-	$mqtt = mqtt_connect();
-	if(isset($mqtt)) {
+	$mqttcreds = mqtt_connectiondetails();
+	if( is_array($mqttcreds) ) {		
 		$mqtt_activ = $config_send = true;
+		// MQTT requires a unique client id
+		$mqttcreds['client_id'] = uniqid(gethostname()."_LoxBerry");
 	}
 }
 
