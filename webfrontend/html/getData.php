@@ -25,6 +25,7 @@ include_once 'includes/checkUpdate.php';
 
 // load config
 include_once 'includes/config.php';
+include_once 'includes/curl.php';
 
 // send request
 if(isset($token)) {
