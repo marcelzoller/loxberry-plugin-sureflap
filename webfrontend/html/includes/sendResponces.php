@@ -50,7 +50,7 @@ if($mqtt_activ == true) {
 	LOGDEB("Connecting to MQTT-brocker");
 	$mqtt = new Bluerhinos\phpMQTT($mqttcreds['brokerhost'], $mqttcreds['brokerport'],$mqttcreds['client_id']);
 	if( $mqtt->connect(true, NULL, $mqttcreds['brokeruser'], $mqttcreds['brokerpass'] ) ) {
-		LOGDEB("Successfully connected to MQTT-brocker");
+		LOGINF("Successfully connected to MQTT-brocker");
 		// send mqtt data
 		foreach($mqtt_values AS $mqtt_sub => $mqtt_value) {
 			// build a topic
@@ -58,7 +58,7 @@ if($mqtt_activ == true) {
 			// encode the data to json
 			$mqtt_json_value = json_encode($mqtt_value);	
 			// publish json data
-			LOGDEB("Publish: \"$mqtt_topic\" value \"$mqtt_json_value\"");
+			LOGINF("Publish: \"$mqtt_topic\" value \"$mqtt_json_value\"");
 			$mqtt->publish( $mqtt_topic, $mqtt_json_value );
 		}
 		$mqtt->close();
