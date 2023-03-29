@@ -7,15 +7,15 @@ require_once "loxberry_io.php";
 $server_timezone = date_default_timezone_get();
 
 // load configfile
-$cfg = new Config_Lite("$lbpconfigdir/pluginconfig.cfg");
+$plugin_cfg = new Config_Lite("$lbpconfigdir/pluginconfig.cfg");
 
 // logindata
-$config_email_address = @$cfg['MAIN']['EMAIL'];
-$config_password      = @$cfg['MAIN']['PASSWORD'];
-$config_miniserver    = @$cfg['MAIN']['MINISERVER'];
-$config_http_send     = @$cfg['MAIN']['HTTPSEND'];
-$config_mqtt_send     = @$cfg['MAIN']['MQTTSEND'];
-$config_mqtt_topic    = @$cfg['MAIN']['MQTT_TOPIC'];
+$config_email_address = @$plugin_cfg['MAIN']['EMAIL'];
+$config_password      = @$plugin_cfg['MAIN']['PASSWORD'];
+$config_miniserver    = @$plugin_cfg['MAIN']['MINISERVER'];
+$config_http_send     = @$plugin_cfg['MAIN']['HTTPSEND'];
+$config_mqtt_send     = @$plugin_cfg['MAIN']['MQTTSEND'];
+$config_mqtt_topic    = @$plugin_cfg['MAIN']['MQTT_TOPIC'];
 
 $endpoint = "https://app.api.surehub.io";
 $config_send = false;
@@ -60,9 +60,10 @@ $config_device_id = (string) rand(1000000000,1999999999);
 
 // get last token
 LOGDEB("Getting last token");
-$token = "";
+$token = null;
 if(file_exists("$lbpdatadir/token.dat")) {
 	$token = file_get_contents("$lbpdatadir/token.dat");
+	LOGDEB("Current tocken: ".$token);
 }
 
 ?>
