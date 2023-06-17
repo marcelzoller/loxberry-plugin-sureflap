@@ -1,10 +1,13 @@
 <?php
-
 function init_curl($endpoint) {
+	require_once 'userAgent.php';
+	$userAgent = (new userAgent) ->generate();
+
 	$ch = curl_init($endpoint);
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);	
 	curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 0); 
 	curl_setopt($ch, CURLOPT_TIMEOUT, 30); //timeout in seconds
+	curl_setopt($ch, CURLOPT_USERAGENT, $userAgent);
 	return $ch;
 }
 
