@@ -71,7 +71,7 @@ if($device_lock_id == $lock) {
 if($config_send) {
 	print "<br><br>";
 	// Only send changed values
-	$_GET['viparam'] = "DateTime;DateTimeLox;DeviceLockMode;DeviceLockModeLox;DeviceLockModeDesc";
+	$_GET['viparam'] = "DateTime;DateTimeLox;DateTimeUnix;DeviceLockMode;DeviceLockModeLox;DeviceLockModeDesc";
 	// Convert value
 	include 'includes/getDevices.php';
 	// Responce to virutal input

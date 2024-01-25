@@ -81,7 +81,7 @@ if($curr_location_id == $location) {
 if($config_send) {
 	print "<br><br>";
 	// Only send changed values
-	$_GET['viparam'] = "DateTime;DateTimeLox;PetLocation;PetLocationLox;PetLocationDesc;PetLocationSince;PetLocationSinceLox";
+	$_GET['viparam'] = "DateTime;DateTimeLox;DateTimeUnix;PetLocation;PetLocationLox;PetLocationDesc;PetLocationSince;PetLocationSinceLox;PetLocationSinceUnix";
 	// Convert value
 	include 'includes/getPets.php';
 	// Responce to virutal input

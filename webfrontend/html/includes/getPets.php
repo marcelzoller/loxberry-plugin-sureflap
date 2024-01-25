@@ -26,7 +26,7 @@ if($pets) {
 			print $multi."PetDob@".date('d.m.Y', $pet_dob)."<br>";
 			print $multi."PetDobLox@".epoch2lox($pet_dob)."<br>";
 			// Weight
-			print $multi."PetWeight@".$pet['weight']." kg<br>";
+			print $multi."PetWeight@".$pet['weight']."<br>";
 			// Gender
 			print $multi."PetGender@".$pet['gender']."<br>";
 			if($pet['gender'] == 0) {
@@ -58,7 +58,8 @@ if($pets) {
 			// Last location time			
 			$pet_loc_time = strtotime($pet['position']['since']);
 			print $multi."PetLocationSince@".date('d.m.Y H:i:s', $pet_loc_time)."<br>";
-			print $multi."PetLocationSinceLox@".epoch2lox($pet_loc_time)."<br>";			
+			print $multi."PetLocationSinceLox@".epoch2lox($pet_loc_time)."<br>";
+			print $multi."PetLocationSinceUnix@".$pet_loc_time."<br>";	
 			// Pet-Locking
 			foreach($device_pet_locking AS $pet_locking) {
 				if($pet_locking['id'] == $pet['tag_id']) {

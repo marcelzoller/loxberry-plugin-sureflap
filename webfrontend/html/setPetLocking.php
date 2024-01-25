@@ -76,7 +76,7 @@ if($curr_pet_locking['profile'] == $locking) {
 if($config_send) {
 	print "<br><br>";
 	// Only send changed values
-	$_GET['viparam'] = "DateTime;DateTimeLox;PetLocking;PetLockingLox;PetLockingDesc";
+	$_GET['viparam'] = "DateTime;DateTimeLox;DateTimeUnix;PetLocking;PetLockingLox;PetLockingDesc";
 	// Convert value	
 	include 'includes/getPets.php';
 	// Responce to virutal input

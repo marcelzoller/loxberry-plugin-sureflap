@@ -63,7 +63,7 @@ LOGDEB("Getting last token");
 $token = null;
 if(file_exists("$lbpdatadir/token.dat")) {
 	$token = file_get_contents("$lbpdatadir/token.dat");
-	LOGDEB("Current tocken: ".$token);
+	LOGDEB("Current token: ".$token);
 }
 
 ?>

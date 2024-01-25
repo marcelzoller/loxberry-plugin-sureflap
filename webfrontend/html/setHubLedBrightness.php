@@ -66,7 +66,7 @@ if($device_led_id == $led) {
 if($config_send) {
 	print "<br><br>";
 	// Only send changed values
-	$_GET['viparam'] = "DateTime;DateTimeLox;DeviceLedMode;DeviceLedModeLox;DeviceLedModeDesc";
+	$_GET['viparam'] = "DateTime;DateTimeLox;DateTimeUnix;DeviceLedMode;DeviceLedModeLox;DeviceLedModeDesc";
 	// Convert value
 	include 'includes/getDevices.php';
 	// Responce to virutal input
