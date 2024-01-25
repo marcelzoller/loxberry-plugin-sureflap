@@ -1,7 +1,7 @@
 <?php
 
 LOGDEB("Requesting new token");
-$json = json_encode(array("email_address" => $config_email_address, "password" => $config_password, "device_id" => $config_device_id));
+$json = json_encode(array("email_address" => $config_email_address, "password" => $config_password, "device_id" => $config_device_id), JSON_UNESCAPED_UNICODE);
 $curl = post_curl($endpoint."/api/auth/login", null, $json);
 LOGDEB("Request received with code: ".$curl['http_code']);
 

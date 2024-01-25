@@ -60,8 +60,8 @@ if($devices) {
 			print $multi."DeviceOnline@".$device['status']['online']."<br>";
 			// Signal
 			if(isset($device['status']['signal'])) {
-				print $multi."DeviceSignal@".round($device['status']['signal']['device_rssi'],1)." db<br>";
-				print $multi."DeviceSignalHub@".round($device['status']['signal']['hub_rssi'],1)." db<br>";
+				print $multi."DeviceSignal@".round($device['status']['signal']['device_rssi'],1)."<br>";
+				print $multi."DeviceSignalHub@".round($device['status']['signal']['hub_rssi'],1)."<br>";
 			}
 			// HUB-data
 			if($device['product_id'] == 1) { 
@@ -99,7 +99,7 @@ if($devices) {
 				} else {
 					$device_batt_perc = round(($device_batt - 4.8) / 0.8 * 100);
 				}
-				print $multi."DeviceBatteryPerc@".$device_batt_perc."%<br>";
+				print $multi."DeviceBatteryPerc@".$device_batt_perc."<br>";
 				// Locking
 				$device_lock_id = $device['control']['locking'];
 				unset($device_lock);

@@ -32,7 +32,7 @@ our $htmlhead = "<script src='/admin/plugins/sureflap/pw.js'></script>";
  
 # Wir Übergeben die Titelzeile (mit Versionsnummer), einen Link ins Wiki und das Hilfe-Template.
 # Um die Sprache der Hilfe brauchen wir uns im Code nicht weiter zu kümmern.
-LoxBerry::Web::lbheader("SureFlap Connect Plugin V$version", "http://www.loxwiki.eu/SureFlap/Zoller", "help.html");
+LoxBerry::Web::lbheader("SureFlap Connect Plugin V$version", "https://wiki.loxberry.de/plugins/sureflap_connect/start", "help.html");
   
 # Wir holen uns die Plugin-Config in den Hash %pcfg. Damit kannst du die Parameter mit $pcfg{'Section.Label'} direkt auslesen.
 my %pcfg;
@@ -70,6 +70,8 @@ my $EMAIL = %pcfg{'MAIN.EMAIL'};
 my $PASSWORD = %pcfg{'MAIN.PASSWORD'};
 my $MINISERVER = %pcfg{'MAIN.MINISERVER'};
 my $HTTPSEND = %pcfg{'MAIN.HTTPSEND'};
+my $MQTTSEND = %pcfg{'MAIN.MQTTSEND'};
+my $MQTT_TOPIC = %pcfg{'MAIN.MQTT_TOPIC'};
 
 ##########################################################################
 # Fill Miniserver selection dropdown
@@ -109,6 +111,14 @@ $template->param( LOGDATEI => "/admin/system/tools/logfile.cgi?logfile=$lbplogdi
 	$template->param( HTTPSENDYES => "");
 	$template->param( HTTPSENDNO => "selected=selected");
 }
+ if ($MQTTSEND == 1) {
+	$template->param( MQTTSENDYES => "selected=selected");
+	$template->param( MQTTSENDNO => "");
+} else {
+	$template->param( MQTTSENDYES => "");
+	$template->param( MQTTSENDNO => "selected=selected");
+}
+$template->param( MQTT_TOPIC => $MQTT_TOPIC);
 
   
 # Nun wird das Template ausgegeben.
@@ -131,27 +141,32 @@ sub save
 	LOGDEB "---------- Setting: Start Save ------------";
 	
 	if ($R::EMAIL ne "") {
-			LOGDEB "EMail: $R::EMAIL";
-			$pcfg{'MAIN.EMAIL'} = $R::EMAIL;
-			# tied(%pcfg)->write();
-		} 
+		LOGDEB "EMail: $R::EMAIL";
+		$pcfg{'MAIN.EMAIL'} = $R::EMAIL;
+	} 
 	if ($R::PASSWORD ne "") {
-			LOGDEB "Password: $R::PASSWORD";
-			$pcfg{'MAIN.PASSWORD'} = $R::PASSWORD;
-			# tied(%pcfg)->write();
-		} 
+		LOGDEB "Password: $R::PASSWORD";
+		$pcfg{'MAIN.PASSWORD'} = $R::PASSWORD;
+	} 
 	if ($R::MINISERVER ne "") {
-			$pcfg{'MAIN.MINISERVER'} = $R::MINISERVER;
-			# tied(%pcfg)->write();
-		}
+		LOGDEB "Miniserver: $R::MINISERVER";
+		$pcfg{'MAIN.MINISERVER'} = $R::MINISERVER;
+	}
 	if ($R::HTTPSEND == "1") {
-			#LOGDEB "HTTP Send: $R::HTTP_TEXT_Send";
-			$pcfg{'MAIN.HTTPSEND'} = "1";
-			# tied(%pcfg)->write();
+		$pcfg{'MAIN.HTTPSEND'} = "1";
 	} else{
-			#LOGDEB "HTTP Send: $R::HTTP_TEXT_Send";
-			$pcfg{'MAIN.HTTPSEND'} = "0";
-			# tied(%pcfg)->write();
+		$pcfg{'MAIN.HTTPSEND'} = "0";
+	}
+	LOGDEB "HTTPSEND: $R::HTTPSEND";
+	if ($R::MQTTSEND == "1") {
+		$pcfg{'MAIN.MQTTSEND'} = "1";
+	} else{
+		$pcfg{'MAIN.MQTTSEND'} = "0";
+	}
+	LOGDEB "MQTTSEND: $R::MQTTSEND";
+	if ($R::MQTT_TOPIC ne "") {
+		LOGDEB "MQTT Topic: $R::MQTT_TOPIC";
+		$pcfg{'MAIN.MQTT_TOPIC'} = $R::MQTT_TOPIC;
 	}
 		
 	tied(%pcfg)->write();

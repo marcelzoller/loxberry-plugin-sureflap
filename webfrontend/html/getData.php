@@ -10,7 +10,8 @@ $log = LBLog::newLog ($params);
 
 // print request moment
 print "System@DateTime@".date('d.m.Y H:i:s')."<br>";
-print "System@DateTimeLox@".epoch2lox(time())."<br><br>";
+print "System@DateTimeLox@".epoch2lox(time())."<br>";
+print "System@DateTimeUnix@".time()."<br><br>";
 
 // called from other modul?
 ob_start();
@@ -20,8 +21,10 @@ if(empty($background)) {
 	LOGINF("Getting data from getData.php...");
 }
 
-// load config
+// check last run - only allow 10 seconds interval
 include_once 'includes/checkUpdate.php';
+
+// load config
 include_once 'includes/config.php';
 include_once 'includes/curl.php';
 
@@ -66,18 +69,20 @@ $pets = $curl['result']['data']['pets'];
 include 'includes/getPets.php';
 
 if(empty($background)) {
-	// print data
-	ob_end_flush();	
 	// Responce to virutal input?
-	if($config_http_send == 1) {
+	if($config_send) {
 		LOGDEB("Starting Response to miniserver...");
 		include_once 'includes/sendResponces.php';
 	} 
+	// print data from buffer
+	ob_end_flush();	
+
 	LOGEND("SureFlap HTTP getData.php stopped");	
 } else {
 	// do not print data in background
-	ob_end_clean();
 	LOGINF("Returning from getData.php...");	
 }
+// clear output
+ob_end_clean();
 
 ?>

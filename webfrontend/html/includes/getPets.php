@@ -26,7 +26,7 @@ if($pets) {
 			print $multi."PetDob@".date('d.m.Y', $pet_dob)."<br>";
 			print $multi."PetDobLox@".epoch2lox($pet_dob)."<br>";
 			// Weight
-			print $multi."PetWeight@".$pet['weight']." kg<br>";
+			print $multi."PetWeight@".$pet['weight']."<br>";
 			// Gender
 			print $multi."PetGender@".$pet['gender']."<br>";
 			if($pet['gender'] == 0) {
@@ -43,10 +43,12 @@ if($pets) {
 			}
 			// Location
 			$curr_location_id = $pet['position']['where'];
-			if($curr_location_id == 1) {
+			if ($curr_location_id == 1) {
 				$curr_location = "Inside";
-			} else {
+			} elseif($curr_location_id == 2) {
 				$curr_location = "Outside";
+			} else {
+				$curr_location = "Unknown";
 			}
 			print $multi."PetLocation@".$curr_location_id."<br>";
 			$curr_location_lox = $curr_location_id - 1;
@@ -56,7 +58,8 @@ if($pets) {
 			// Last location time			
 			$pet_loc_time = strtotime($pet['position']['since']);
 			print $multi."PetLocationSince@".date('d.m.Y H:i:s', $pet_loc_time)."<br>";
-			print $multi."PetLocationSinceLox@".epoch2lox($pet_loc_time)."<br>";			
+			print $multi."PetLocationSinceLox@".epoch2lox($pet_loc_time)."<br>";
+			print $multi."PetLocationSinceUnix@".$pet_loc_time."<br>";	
 			// Pet-Locking
 			foreach($device_pet_locking AS $pet_locking) {
 				if($pet_locking['id'] == $pet['tag_id']) {
