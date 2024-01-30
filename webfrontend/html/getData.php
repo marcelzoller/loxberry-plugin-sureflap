@@ -80,9 +80,9 @@ if(empty($background)) {
 	LOGEND("SureFlap HTTP getData.php stopped");	
 } else {
 	// do not print data in background
-	LOGINF("Returning from getData.php...");	
+	LOGINF("Returning from getData.php...");
+	// clear output
+	ob_end_clean();
 }
-// clear output
-ob_end_clean();
 
 ?>
