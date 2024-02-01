@@ -8,16 +8,22 @@ $params = [
 ];
 $log = LBLog::newLog ($params);
 
+if(empty($background)) {
+	// send output to buffer
+	ob_start();
+}
+	
 // print request moment
 print "System@DateTime@".date('d.m.Y H:i:s')."<br>";
 print "System@DateTimeLox@".epoch2lox(time())."<br>";
 print "System@DateTimeUnix@".time()."<br><br>";
 
 // called from other modul?
-ob_start();
 if(empty($background)) {	
 	LOGSTART("SureFlap HTTP getData.php started");
 } else {
+	// send output to buffer
+	ob_start();
 	LOGINF("Getting data from getData.php...");
 }
 
