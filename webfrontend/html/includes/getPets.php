@@ -50,9 +50,11 @@ if($pets) {
 			} else {
 				$curr_location = "Unknown";
 			}
-			print $multi."PetLocation@".$curr_location_id."<br>";
-			$curr_location_lox = $curr_location_id - 1;
-			print $multi."PetLocationLox@$curr_location_lox<br>";
+			if ($curr_location_id == 1 or $curr_location_id == 2) {
+				print $multi."PetLocation@".$curr_location_id."<br>";
+				$curr_location_lox = $curr_location_id - 1;
+				print $multi."PetLocationLox@$curr_location_lox<br>";
+			}
 			print $multi."PetLocationDesc@$curr_location<br>";			
 			LOGINF("PetLocationDesc@$curr_location");		
 			// Last location time			
