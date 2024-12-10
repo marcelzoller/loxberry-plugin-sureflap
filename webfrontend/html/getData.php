@@ -72,6 +72,9 @@ if(isset($_GET['name'])) {
 // getting pets
 LOGDEB("Getting pets...");
 $pets = $curl['result']['data']['pets'];
+// check location, if empty try to use timeline
+include 'includes/checkLocation.php';
+// now get the pets data
 include 'includes/getPets.php';
 
 if(empty($background)) {
