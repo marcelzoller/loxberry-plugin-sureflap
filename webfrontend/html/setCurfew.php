@@ -75,38 +75,42 @@ if($found == false) {
 	$curl = put_curl($endpoint."/api/device/$flap/control", $token, $json);
 	LOGDEB("Request received with code: ".$curl['http_code']);
 
-	$found = false;
-	foreach($curl['result']['data']['curfew'] AS $curfew) {
-		if($curfew['enabled'] == $input_enable) {
-			if ($input_enable == false) {
-				$found = true;
-				break;
-			} elseif($curfew['lock_time'] == $input_from && $curfew['unlock_time'] == $input_to) {
-				$found = true;
-				break;
-			}				
-		}
-	}
-	
-	if($found) {
-		if($input_enable) {
-			print "Successfully enabled curfew for \"$flapname\" between ".$input_from." & ".$input_to;
-			LOGINF("Successfully enabled curfew for \"$flapname\" between ".$input_from." & ".$input_to);
-		} else {
-			print "Successfully disabled curfew for \"$flapname\"";
-			LOGINF("Successfully disabled curfew for \"$flapname\"");
+	if($curl['code_ok']) {
+		$found = false;
+		foreach($curl['result']['data']['curfew'] AS $curfew) {
+			if($curfew['enabled'] == $input_enable) {
+				if ($input_enable == false) {
+					$found = true;
+					break;
+				} elseif($curfew['lock_time'] == $input_from && $curfew['unlock_time'] == $input_to) {
+					$found = true;
+					break;
+				}				
+			}
 		}
 		
-		// Build data to responce
-		$devices[$flapindex]['control'] = $curl['result']['data'];				
-	} else {	
-		print "Enable Curfew Failed!";
-		LOGERR("Enable Curfew Failed!");
+		if($found) {
+			if($input_enable) {
+				print "Successfully enabled curfew for \"$flapname\" between ".$input_from." & ".$input_to;
+				LOGINF("Successfully enabled curfew for \"$flapname\" between ".$input_from." & ".$input_to);
+			} else {
+				print "Successfully disabled curfew for \"$flapname\"";
+				LOGINF("Successfully disabled curfew for \"$flapname\"");
+			}
+			
+			// Build data to responce
+			$devices[$flapindex]['control'] = $curl['result']['data'];				
+		} else {	
+			print "Enable Curfew Failed!";
+			LOGERR("Enable Curfew Failed!");
+		}
+		// Send data
+		$send_data = true;
 	}
 }
 
 
-if($config_send) {
+if($config_send and $send_data) {
 	print "<br><br>";
 	// Only send changed values
 	$_GET['viparam'] = "DateTime;DateTimeLox;DateTimeUnix;DeviceCurfew";

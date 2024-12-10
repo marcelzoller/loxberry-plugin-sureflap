@@ -16,6 +16,7 @@ function start_curl($ch) {
 	
 	$curl_array['result'] = json_decode(curl_exec($ch),true);
 	$curl_array['http_code'] = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+	$curl_array['code_ok'] = substr($curl_array['http_code'],0,1) == "2" ? true : false;
 	curl_close($ch);
 	return $curl_array;
 }

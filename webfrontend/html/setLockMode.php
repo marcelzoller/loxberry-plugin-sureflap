@@ -56,19 +56,21 @@ if($device_lock_id == $lock) {
 	$curl = put_curl($endpoint."/api/device/$flap/control", $token, $json);
 	LOGDEB("Request received with code: ".$curl['http_code']);
 
-	if($curl['result']['data']['locking'] == $lock) {
+	if($curl['code_ok'] and $curl['result']['data']['locking'] == $lock) {
 		print "Successfully set lockmode for \"$flapname\" to \"$lock_str\"";
 		LOGINF("Successfully set lockmode for \"$flapname\" to \"$lock_str\"");
 		
 		// Build data to responce
 		$devices[$flapindex]['control'] = $curl['result']['data'];
+		// Send data
+		$send_data = true;
 	} else {
 		print "Lockmode change failed!";
 		LOGERR("Lockmode change failed!");
 	}
 }
 
-if($config_send) {
+if($config_send and $send_data) {
 	print "<br><br>";
 	// Only send changed values
 	$_GET['viparam'] = "DateTime;DateTimeLox;DateTimeUnix;DeviceLockMode;DeviceLockModeLox;DeviceLockModeDesc";

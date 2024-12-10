@@ -51,19 +51,21 @@ if($device_led_id == $led) {
 	$curl = put_curl($endpoint."/api/device/$hub/control", $token, $json);
 	LOGDEB("Request received with code: ".$curl['http_code']);
 
-	if($curl['result']['data']['led_mode'] == $led) {
+	if($curl['code_ok'] and $curl['result']['data']['led_mode'] == $led) {
 		print "Successfully set LED mode for \"$hubname\" to \"$led_str\"";
 		LOGINF("Successfully set LED mode for \"$hubname\" to \"$led_str\"");
 
 		// Build data to responce
-		$devices[$hubindex]['control'] = $curl['result']['data'];	
+		$devices[$hubindex]['control'] = $curl['result']['data'];
+		// Send data
+		$send_data = true;
 	} else {
 		print "LED Brightness Change Failed!";
 		LOGERR("LED Brightness Change Failed!");
 	}	
 }
 
-if($config_send) {
+if($config_send and $send_data) {
 	print "<br><br>";
 	// Only send changed values
 	$_GET['viparam'] = "DateTime;DateTimeLox;DateTimeUnix;DeviceLedMode;DeviceLedModeLox;DeviceLedModeDesc";

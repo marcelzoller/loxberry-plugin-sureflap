@@ -61,19 +61,21 @@ if($curr_pet_locking['profile'] == $locking) {
 	$curl = put_curl($endpoint."/api/device/$flap/tag/".$curr_pet_locking['id'], $token, $json);
 	LOGDEB("Request received with code: ".$curl['http_code']);
 
-	if($curl['result']['data']['profile'] == $locking) {
+	if($curl['code_ok'] and $curl['result']['data']['profile'] == $locking) {
 		print "Successfully set pet locking for \"$petname\" to \"$locking_str\"";
 		LOGINF("Successfully set pet locking for \"$petname\" to \"$locking_str\"");
 		
 		// Build data to responce
-		$device_pet_locking = array($curl['result']['data']);		
+		$device_pet_locking = array($curl['result']['data']);
+		// Send data
+		$send_data = true;
 	} else {
 		print "Set Locking Failed!";
 		LOGERR("Set Locking Failed!");
 	}
 }
 
-if($config_send) {
+if($config_send and $send_data) {
 	print "<br><br>";
 	// Only send changed values
 	$_GET['viparam'] = "DateTime;DateTimeLox;DateTimeUnix;PetLocking;PetLockingLox;PetLockingDesc";

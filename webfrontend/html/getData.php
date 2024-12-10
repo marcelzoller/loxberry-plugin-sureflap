@@ -53,33 +53,37 @@ if(!isset($token) or $curl['http_code'] != "200") {
 	LOGDEB("Re-Request received with code: ".$curl['http_code']);
 }
 
-// getting household
-LOGDEB("Getting households...");
-$households = $curl['result']['data']['households'];
-include 'includes/getHouseholds.php';
+if($curl['code_ok']) {
+	// getting household
+	LOGDEB("Getting households...");
+	$households = $curl['result']['data']['households'];
+	include 'includes/getHouseholds.php';
 
-// getting devices
-LOGDEB("Getting devices...");
-$devices = $curl['result']['data']['devices'];
-include 'includes/getDevices.php';
+	// getting devices
+	LOGDEB("Getting devices...");
+	$devices = $curl['result']['data']['devices'];
+	include 'includes/getDevices.php';
 
-// Backward compatibility
-if(isset($_GET['name'])) {
-	$_GET['petname'] = $_GET['name'];
-	LOGWARN("Parameter name should no longer be used! Please use petname instead.");
+	// Backward compatibility
+	if(isset($_GET['name'])) {
+		$_GET['petname'] = $_GET['name'];
+		LOGWARN("Parameter name should no longer be used! Please use petname instead.");
+	}
+
+	// getting pets
+	LOGDEB("Getting pets...");
+	$pets = $curl['result']['data']['pets'];
+	// check location, if empty try to use timeline
+	include 'includes/checkLocation.php';
+	// now get the pets data
+	include 'includes/getPets.php';
+	// send data?
+	if(empty($background)) $send_data = true;	
 }
-
-// getting pets
-LOGDEB("Getting pets...");
-$pets = $curl['result']['data']['pets'];
-// check location, if empty try to use timeline
-include 'includes/checkLocation.php';
-// now get the pets data
-include 'includes/getPets.php';
 
 if(empty($background)) {
 	// Responce to virutal input?
-	if($config_send) {
+	if($config_send and $send_data) {
 		LOGDEB("Starting Response to miniserver...");
 		include_once 'includes/sendResponces.php';
 	} 

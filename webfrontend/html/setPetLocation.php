@@ -66,19 +66,22 @@ if($curr_location_id == $location) {
 	$curl = post_curl($endpoint."/api/pet/$petid/position", $token, $json);
 	LOGDEB("Request received with code: ".$curl['http_code']);
 
-	if($curl['result']['data']['where'] == $location) {
+	if($curl['code_ok'] and $curl['result']['data']['where'] == $location) {
 		print "Successfully set pet location for \"$petname\" to \"$location_str\"";
 		LOGINF("Successfully set pet location for \"$petname\" to \"$location_str\"");
 		
 		// Build data to responce
-		$pets[$petindex]['position'] = $curl['result']['data'];
+		$pets[$petindex]['position']['where'] = $location;
+		$pets[$petindex]['position']['since'] = date("Y-m-d H:i:s");
+		// Send data
+		$send_data = true;
 	} else {
 		print "Set Location Failed!";
 		LOGERR("Set Location Failed!");
 	}
 }
 
-if($config_send) {
+if($config_send and $send_data) {
 	print "<br><br>";
 	// Only send changed values
 	$_GET['viparam'] = "DateTime;DateTimeLox;DateTimeUnix;PetLocation;PetLocationLox;PetLocationDesc;PetLocationSince;PetLocationSinceLox;PetLocationSinceUnix";

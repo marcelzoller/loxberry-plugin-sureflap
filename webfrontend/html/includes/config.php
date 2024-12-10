@@ -19,6 +19,7 @@ $config_mqtt_topic    = @$plugin_cfg['MAIN']['MQTT_TOPIC'];
 
 $endpoint = "https://app.api.surehub.io";
 $config_send = false;
+$send_data = false;
 
 // send http?
 $http_activ = false;
