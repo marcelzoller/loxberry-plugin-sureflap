@@ -131,10 +131,10 @@ if($devices) {
 						if(!empty($curfew_string)) { 
 							$curfew_string .= ","; 
 						}
-						$curfew_string .= $curfew['lock_time']."-".$curfew['unlock_time'];
 						// Is curfew activ?
-						$curfew_from = strtotime($curfew['lock_time']);
-						$curfew_to   = strtotime($curfew['unlock_time']);
+						$curfew_from = strtotime($curfew['lock_time'].' UTC');
+						$curfew_to   = strtotime($curfew['unlock_time'].'  UTC');
+						$curfew_string .= date('H:i', $curfew_from)."-".date('H:i', $curfew_to);
 						if($curfew_to < $curfew_from) {
 							$curfew_overlap = true;
 						}
